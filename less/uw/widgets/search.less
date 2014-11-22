@@ -1,0 +1,58 @@
+// Search Widget
+
+#searchform {
+	position: relative;
+	clear: both;
+	outline: 1px solid #ADADAD;
+	font-family: @font-family-headline;
+	font-size: 20px;
+	color: #7A7A7A;
+	label {
+		position: absolute;
+		top: 10px;
+		left: 18px;
+		visibility: hidden;
+	}
+	.assistive-text {
+		  z-index: -1;
+	}
+	div {
+
+	}
+	// Field
+	#s {
+		width: 100%;
+		padding: 10px 0 10px 15px;
+		border: none;
+		font-size: 20px;
+		font-weight: 500;
+		outline: none;
+		background-color: #F5F5F5;
+	}
+	// Button
+	#searchsubmit {
+		float: left;
+		display: block;
+		height: 54px;
+		width: 55px;
+		text-indent: -99999px;
+		outline: 1px solid @purple;
+		overflow: hidden;
+		background: url(assets/svg/search.svg) no-repeat center center @purple;
+		position: relative;
+		border: none;
+		.background-size(22px);
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+}
+
+
+.uw-sidebar .widget_search .widgettitle {
+	padding-bottom: 10px;
+	&:before,
+	&:after {
+		display: none;
+	}
+}
