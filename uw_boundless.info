@@ -28,19 +28,6 @@ regions[page_bottom]    = 'Page bottom'
 stylesheets[all][] = css/style.css
 
 
-
-; ;--- UW dependencies ---
-;;scripts[] = 'js/jquery-2.1.1.min.js'
-scripts[] = 'js/jquery-2.1.1.js'
-;;scripts[] = 'js/underscore-min.js'
-scripts[] = 'js/underscore.js'
-;;scripts[] = 'js/backbone-min.js'
-scripts[] = 'js/backbone.js'
-
-; ;--- UW ---
-;scripts[] = 'js/uw/site.js'
-scripts[] = 'js/uw/site.dev.js'
-
 ; For information on choosing the desired method, please read the Drupal
 ; Bootstrap sub-theme "how-to" documentation:
 ; https://drupal.org/node/1978010
@@ -68,6 +55,9 @@ scripts[] = 'bootstrap/js/transition.js'
 ;
 ; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 settings[bootstrap_cdn] = ''
+
+
+scripts[] = 'js/script.js'
 
 
 ; ;-------------------------

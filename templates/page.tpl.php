@@ -73,34 +73,14 @@
  * @ingroup themeable
  */
 //print '<pre>';
-//print_r ($page['header']);
+//print_r ($base_path);
 //print '</pre>';
 ?>
-<!-- #todo  build uwsearcharea dynamically -->
+
 <div id="uwsearcharea" class="uw-search-bar-container">
     <div class="container no-height">
         <div class="center-block uw-search-wrapper">
-            <form class="uw-search" action="/uw_brand/">
-                <input id="uw-search-bar" type="search" name="s" value="" autocomplete="off" tabindex="-1"></form>
-            <select id="mobile-search-select" class="visible-xs">
-                <option value="uw" selected="">All the UW</option>
-                <option value="site">Current site</option></select>
-            <button class="search" tabindex="-1"></button>
-            <div class="labels hidden-xs">
-                <label class="radio checked">
-                    <span class="icons">
-                        <span class="first-icon fui-radio-unchecked"></span>
-                        <span class="second-icon fui-radio-checked"></span></span>
-                    <input type="radio" name="search" value="uw" data-toggle="radio" checked="" tabindex="-1">All the UW</label>
-                <label class="radio">
-                    <span class="icons">
-                        <span class="first-icon fui-radio-unchecked"></span>
-                        <span class="second-icon fui-radio-checked"></span></span>
-                    <input type="radio" name="search" value="site" data-toggle="radio" tabindex="-1">Current site</label>
-            </div>
-        </div>
-        <div class="uw-results center-block" style="display: none;">
-            <p class="more-results" style="display:none;">Need more results? Try the <a href="http://www.washington.edu/directory/" title="Full directory">full directory</a></p>
+            <?php print render($page['search']); ?>
         </div>
     </div>
 </div>
@@ -111,7 +91,7 @@
 <div id="uw-container">
 
     <!-- #todo  build quicklinks dynamically -->
-    <nav id="quicklinks" role="navigation" aria-label="quick links" aria-hidden="false" class="open">
+    <nav id="quicklinks" role="navigation" aria-label="quick links" aria-hidden="" class="">
         <ul id="big-links"> 
             <li><span class="icon-myuw"></span><a href="http://myuw.washington.edu" tabindex="0">MyUW</a></li> 
             <li><span class="icon-calendar"></span><a href="http://uw.edu/calendar" tabindex="0">Calendar</a></li> 
@@ -142,8 +122,8 @@
 
         <nav class="uw-thin-strip-nav" role='navigation' aria-label='audience based'>
             <ul class="uw-thin-links">
-              <li class="uw-quicklinks"><button aria-haspopup="true" aria-expanded="false">Quick Links<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15.63px" height="69.13px" viewBox="0 0 15.63 69.13" enable-background="new 0 0 15.63 69.13" xml:space="preserve"><polygon fill="#FFFFFF" points="12.8,7.776 12.803,7.773 5.424,0 3.766,1.573 9.65,7.776 3.766,13.98 5.424,15.553 12.803,7.78"/><polygon fill="#FFFFFF" points="9.037,61.351 9.036,61.351 14.918,55.15 13.26,53.577 7.459,59.689 1.658,53.577 0,55.15 5.882,61.351 5.882,61.351 5.884,61.353 0,67.557 1.658,69.13 7.459,63.019 13.26,69.13 14.918,67.557 9.034,61.353"/></svg></button></li>
-              <li class="uw-search"><button aria-haspopup='true' aria-owns='uwsearcharea' aria-controls='uwsearcharea' aria-expanded='false'>Open search area
+              <li class="uw-quicklinks"><button aria-haspopup="true" aria-expanded="">Quick Links<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15.63px" height="69.13px" viewBox="0 0 15.63 69.13" enable-background="new 0 0 15.63 69.13" xml:space="preserve"><polygon fill="#FFFFFF" points="12.8,7.776 12.803,7.773 5.424,0 3.766,1.573 9.65,7.776 3.766,13.98 5.424,15.553 12.803,7.78"/><polygon fill="#FFFFFF" points="9.037,61.351 9.036,61.351 14.918,55.15 13.26,53.577 7.459,59.689 1.658,53.577 0,55.15 5.882,61.351 5.882,61.351 5.884,61.353 0,67.557 1.658,69.13 7.459,63.019 13.26,69.13 14.918,67.557 9.034,61.353"/></svg></button></li>
+              <li class="uw-search"><button aria-haspopup='true' aria-owns='uwsearcharea' aria-controls='uwsearcharea' aria-expanded=''>Open search area
 
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  width="18.776px" height="51.062px" viewBox="0 0 18.776 51.062" enable-background="new 0 0 18.776 51.062" xml:space="preserve">
