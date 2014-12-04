@@ -114,15 +114,17 @@
         <?php include "includes/thinstrip.php"; ?>
         <!-- /#uw-thinstrip -->
         
-        <div class="container uw-body">
-            
-            <header role="banner" id="page-header">
-
+        <header role="banner" id="page-header">
+            <div class="container">
+                <div class="row">
                 <?php print render($page['header']); ?>
-                
-                <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
-            </header> <!-- /#page-header -->
-            
+                </div>
+            </div>
+            <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
+        </header> <!-- /#page-header -->        
+        
+        <div class="container uw-body">
+                        
             <div class="row">
                 
                 <section<?php print $content_column_class; ?>>
