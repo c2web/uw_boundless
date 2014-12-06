@@ -73,7 +73,7 @@
  * @ingroup themeable
  */
 //print '<pre>';
-//print_r ($base_path);
+//print_r ($page['navigation']);
 //print '</pre>';
 ?>
 
@@ -113,31 +113,51 @@
     <div id="uw-container-inner">
         <?php include "includes/thinstrip.php"; ?>
         <!-- /#uw-thinstrip -->
-        
-        <header role="banner" id="page-header">
-            <div class="container">
-                <div class="row">
-                <?php print render($page['header']); ?>
-                </div>
+
+        <nav id="dawgdrops" aria-label="Main menu" role="navigation">
+            <div class="dawgdrops-inner container">
+                <?php print render($page['navigation']); ?>
             </div>
-            <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
-        </header> <!-- /#page-header -->        
-        
+        </nav>
+        <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
+         
         <div class="container uw-body">
                         
             <div class="row">
                 
                 <section<?php print $content_column_class; ?>>
+                    
+                <?php if (!empty($site_name)): ?>
+                    <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><h2 class="uw-site-title"><?php print $site_name; ?><?php if (!empty($site_slogan)): print '&#32;&#47;&#32;'.$site_slogan; endif; ?></h2></a>
+                <?php endif; ?>
+                    
                 <?php if (!empty($page['highlighted'])): ?>
                   <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
                 <?php endif; ?>
                   
-                <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
-                <?php //if (!empty($breadcrumb)): ?>
-                  <!--<nav class="uw-breadcrumbs" role="navigation" aria-label="breadcrumbs">
-                      <?php //print $breadcrumb; ?>
-                  </nav>-->
-                <?php //endif; ?>
+                <?php if (!empty($breadcrumb)): ?>
+                    <nav class="uw-breadcrumbs" role="navigation" aria-label="breadcrumbs">
+                    <?php print $breadcrumb; ?>
+                    </nav>
+                <?php endif;?>
+                  
+                  
+                  <!-- /#uw-mobile-menu 
+                  <nav role="navigation" aria-label="relative">
+                      <?php //$main_menu = menu_navigation_links('main-menu');?>
+                      <?php 
+//                      print theme('links__system_main_menu', array(
+//                        'links' => $main_menu,
+//                        'attributes' => array(
+//                          'id' => 'main-menu',
+//                          'class' => array(
+//                            'links', 'inline', 'clearfix')
+//                          ), 
+//                          'heading' => t('Main menu')
+//                        )
+//                      ); 
+                      ?>
+                  </nav><!-- /#uw-mobile-menu -->
                   
                 <a id="main-content"></a>
                 <?php print render($title_prefix); ?>
@@ -156,13 +176,6 @@
                   <ul class="action-links"><?php print render($action_links); ?></ul>
                 <?php endif; ?>
                 <div class="uw-content" role='main'>
-                    <?php if (!empty($site_name)): ?>
-                        <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><h2 class="uw-site-title"><?php print $site_name; ?></h2>
-                        <?php if (!empty($site_slogan)): ?>
-                            <h2 class="uw-site-title" style="top:-95px"><?php print $site_slogan; ?></h2>
-                        </a>
-                        <?php endif; ?>
-                    <?php endif; ?>
                     <div id='main_content' class="uw-body-copy">
                     <?php print render($page['content']); ?>
                     </div>
@@ -217,7 +230,7 @@
                 </ul>
             </nav>
 
-            <p role="contentinfo">&copy;	 2014 University of Washington  |  Seattle, WA</p>
+            <p role="contentinfo">&copy; <?php print uw_boundless_copyrightyear(); ?>  University of Washington  |  Seattle, WA</p>
 
 
         </div><!-- /#uw-footer -->
