@@ -6,16 +6,48 @@
  */
 
 /**
+ * Preprocess variables for html.tpl.php
+ *
+ * @see system_elements()
+ * @see html.tpl.php
+ */
+function uw_boundless_preprocess_html(&$variables) {
+    // Adding the UW Alert Banner script  
+    $options = array();
+    $options['type'] = 'external';
+    $options['scope'] = 'header';
+    drupal_add_js('//www.washington.edu/static/alert.js', $options);
+}
+
+/**
  * Add in some variables for use in page.tpl.php
  *
  * Implements hook_preprocess_page()
- *
- * @param array &$vars
+ * 
+ * @param type &$variables
  */
-function uw_boundless_process_page(&$vars) {
+function uw_boundless_preprocess_page(&$variables) {
+    
+    // reset content column class from bootstrap's default col-sm-9 to col-md-8.
+    // the column class for sidebar_second is hard-coded in page.tpl.php 
+    if (!empty($variables['page']['sidebar_second'])) {
+        $variables['content_column_class'] = ' class="col-md-8"';
+    }
+    else {
+        $variables['content_column_class'] = ' class="col-sm-12"';
+  }
+    
+}
+/**
+ * Implements hook_process_page()
+ *
+ * @param array &$variables
+ */
+function uw_boundless_process_page(&$variables) {
+    
     // create new wrapper when main menu is in region "navigation"
-    if(!empty($vars['page']['navigation']['system_main-menu'])) {
-        $vars['primary_nav']['#theme_wrappers'] = array('menu_tree__main_menu');
+    if(!empty($variables['page']['navigation']['system_main-menu'])) {
+        $variables['primary_nav']['#theme_wrappers'] = array('menu_tree__main_menu');
     }
 }
 
@@ -24,14 +56,14 @@ function uw_boundless_process_page(&$vars) {
  * 
  * @todo    
  */
-function uw_boundless_preprocess_block(&$vars) {
+function uw_boundless_preprocess_block(&$variables) {
 
   // var_dump($vars);
 
-  $block = $vars['block'];
+  $block = $variables['block'];
 
   //if ($block->delta == 'YOURBLOCK') {
-    $vars['title_attributes_array']['class'][] = 'widgettitle';
+    $variables['title_attributes_array']['class'][] = 'widgettitle';
   //}
 
 }
@@ -39,8 +71,8 @@ function uw_boundless_preprocess_block(&$vars) {
 /**
  * Bootstrap theme wrapper function for the main menu in navigation region
  */
-function uw_boundless_menu_tree__main_menu(&$vars) {
-  return '<ul class="dawgdrops-nav">' . $vars['tree'] . '</ul>';
+function uw_boundless_menu_tree__main_menu(&$variables) {
+  return '<ul class="dawgdrops-nav">' . $variables['tree'] . '</ul>';
 }
 
 /**
@@ -49,8 +81,8 @@ function uw_boundless_menu_tree__main_menu(&$vars) {
  * @param array $vars
  * @return string HTML output
  */
-function uw_boundless_menu_link__main_menu($vars) {
-    $element = $vars['element'];
+function uw_boundless_menu_link__main_menu($variables) {
+    $element = $variables['element'];
     $sub_menu = '';
     
     if ($element['#below']) {
@@ -72,28 +104,54 @@ function uw_boundless_menu_link__main_menu($vars) {
 }
 
 /**
- * Overrides theme_breadcrumb().
+ * Overrides bootstrap_breadcrumb().
  *
- * Print breadcrumbs as an unordered list.
+ * @notes   creates link for last crumb,
+ *          add 'current' class to last item,
+ *          sets breadcrumbs as an unordered list, 
+ *          remove 'breadcrumb' class from the list attributes
  */
 function uw_boundless_breadcrumb($variables) {
-  $output = '';
-  $breadcrumb = $variables['breadcrumb'];
+    $output = '';
+    $breadcrumb = $variables['breadcrumb'];
+        
+    // Determine if we are to display the breadcrumb.
+    $bootstrap_breadcrumb = theme_get_setting('bootstrap_breadcrumb');
+    if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) == 'admin')) && !empty($breadcrumb)) {
+        
+        // only change if the "Show current page title at end" in the theme is checked
+        if (theme_get_setting('bootstrap_breadcrumb_title')) {
+            // create link for last crumb
+            $active_key = (count($breadcrumb) - 1);
+            $active_link = array(
+                '#theme' => 'link',
+                '#text' => $breadcrumb[$active_key]['data'],
+                '#path' => current_path(),
+                '#options' => array(
+                    'attributes' => array('title' => $breadcrumb[$active_key]['data']),
+                    'html' => FALSE,
+                ),
+            );
 
-  // Determine if we are to display the breadcrumb.
-  $bootstrap_breadcrumb = theme_get_setting('bootstrap_breadcrumb');
-  if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) == 'admin')) && !empty($breadcrumb)) {
-    $output = theme('item_list', array(
-//      'attributes' => array(
-//        'class' => array('breadcrumb'),
-//      ),
-      'items' => $breadcrumb,
-      'type' => 'ul',
-    ));
-  }
-  return $output;
+            // set link as data for the active crumb and add the 'current' class.
+            $breadcrumb[$active_key] = array(
+                'data' => theme('link', $active_link),
+                'class' => array('current active'),
+            );
+        }
+       
+        // remove bootstrap's breadcrumb class from the attributes,
+        // add breadcrumb to output
+        $output = theme('item_list', array(
+            'attributes' => array(
+              //'class' => array('breadcrumb'),
+            ),
+            'items' => $breadcrumb,
+            'type' => 'ul',
+        ));
+    }
+     return $output;
 }
-
 
 
 /**
@@ -111,7 +169,7 @@ function uw_boundless_copyrightyear() {
 /**
  * temp devel function
  */
-function _uw_boundless_printtoscreen(&$vars) {
+function _uw_boundless_printtoscreen($vars) {
     print '<pre>';
     print_r($vars);
     print '</pre>';

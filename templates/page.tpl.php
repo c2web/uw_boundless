@@ -72,11 +72,9 @@
  *
  * @ingroup themeable
  */
-//print '<pre>';
-//print_r ($page['navigation']);
-//print '</pre>';
-?>
 
+  //_uw_boundless_printtoscreen($breadcrumb);
+?>
 <div id="uwsearcharea" class="uw-search-bar-container">
     <div class="container no-height">
         <div class="center-block uw-search-wrapper">
@@ -142,22 +140,7 @@
                 <?php endif;?>
                   
                   
-                  <!-- /#uw-mobile-menu 
-                  <nav role="navigation" aria-label="relative">
-                      <?php //$main_menu = menu_navigation_links('main-menu');?>
-                      <?php 
-//                      print theme('links__system_main_menu', array(
-//                        'links' => $main_menu,
-//                        'attributes' => array(
-//                          'id' => 'main-menu',
-//                          'class' => array(
-//                            'links', 'inline', 'clearfix')
-//                          ), 
-//                          'heading' => t('Main menu')
-//                        )
-//                      ); 
-                      ?>
-                  </nav><!-- /#uw-mobile-menu -->
+                  <!-- /#uw-mobile-menu -->
                   
                 <a id="main-content"></a>
                 <?php print render($title_prefix); ?>
@@ -183,9 +166,9 @@
                 </section>
                 
             <?php if (!empty($page['sidebar_second'])): ?>
-            <aside class="col-sm-3 uw-sidebar" role="complementary">
-            <?php print render($page['sidebar_second']); ?>
-            </aside>  <!-- /#sidebar-second -->
+                <aside class="col-md-4 uw-sidebar" role="complementary">
+                <?php print render($page['sidebar_second']); ?>
+                </aside>  <!-- /#sidebar-second -->
             <?php endif; ?>
               
             </div>

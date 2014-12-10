@@ -13,7 +13,8 @@
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
 (function ($, Drupal, window, document, undefined) {
 
-    // Place your code here.
+    // The document ready event executes when the HTML-Document is loaded
+    // and the DOM is ready.
     jQuery(document).ready(function($) { 
         
         /**
@@ -33,5 +34,17 @@
         
         
     });//document.ready
+    
+    
+    // The window load event executes after the document ready event,
+    // when the complete page is fully loaded.
+    jQuery(window).load(function() {
+        
+        /**
+         * relocate the alert banner
+         */
+        $("#uwalert-alert-message").insertAfter("header.uw-thinstrip");
+        
+    });//window.load
     
 })(jQuery, Drupal, this, this.document);
