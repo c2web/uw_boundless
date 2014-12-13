@@ -72,14 +72,12 @@
  *
  * @ingroup themeable
  */
-
-  //_uw_boundless_printtoscreen($breadcrumb);
 ?>
 <div id="uwsearcharea" class="uw-search-bar-container">
     <div class="container no-height">
         <div class="center-block uw-search-wrapper">
             <?php print render($page['search']); ?>
-        </div>
+         </div>
     </div>
 </div>
 <!-- /#uwsearcharea -->
@@ -109,7 +107,8 @@
     </nav>
     
     <div id="uw-container-inner">
-        <?php include "includes/thinstrip.php"; ?>
+        
+        <?php include_once $directory . "/templates/includes/thinstrip.inc"; ?>
         <!-- /#uw-thinstrip -->
 
         <nav id="dawgdrops" aria-label="Main menu" role="navigation">
@@ -129,10 +128,6 @@
                     <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><h2 class="uw-site-title"><?php print $site_name; ?><?php if (!empty($site_slogan)): print '&#32;&#47;&#32;'.$site_slogan; endif; ?></h2></a>
                 <?php endif; ?>
                     
-                <?php if (!empty($page['highlighted'])): ?>
-                  <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
-                <?php endif; ?>
-                  
                 <?php if (!empty($breadcrumb)): ?>
                     <nav class="uw-breadcrumbs" role="navigation" aria-label="breadcrumbs">
                     <?php print $breadcrumb; ?>
@@ -152,6 +147,9 @@
                 <?php if (!empty($tabs)): ?>
                   <?php print render($tabs); ?>
                 <?php endif; ?>
+                <?php if (!empty($page['highlighted'])): ?>
+                  <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+                <?php endif; ?>
                 <?php if (!empty($page['help'])): ?>
                   <?php print render($page['help']); ?>
                 <?php endif; ?>
@@ -165,8 +163,9 @@
                 </div>
                 </section>
                 
-            <?php if (!empty($page['sidebar_second'])): ?>
+            <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
                 <aside class="col-md-4 uw-sidebar" role="complementary">
+                <?php print render($page['sidebar_first']); ?>
                 <?php print render($page['sidebar_second']); ?>
                 </aside>  <!-- /#sidebar-second -->
             <?php endif; ?>
@@ -176,9 +175,12 @@
         </div><!-- /#uw-body -->
         
         
+        <footer class="footer container">
+          <?php print render($page['footer']); ?>
+        </footer>
         
         
-        <div class="uw-footer">
+        <footer class="uw-footer">
 
             <a href="http://www.washington.edu" class="footer-wordmark">University of Washington</a>
 
@@ -216,7 +218,7 @@
             <p role="contentinfo">&copy; <?php print uw_boundless_copyrightyear(); ?>  University of Washington  |  Seattle, WA</p>
 
 
-        </div><!-- /#uw-footer -->
+        </footer><!-- /#uw-footer -->
 
     </div><!-- /#uw-container-inner -->
 </div><!-- /#uw-container -->

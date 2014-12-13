@@ -8,6 +8,8 @@
 /**
  * Preprocess variables for html.tpl.php
  *
+ * Implements template_preprocess_html(&$variables)
+ * 
  * @see system_elements()
  * @see html.tpl.php
  */
@@ -22,15 +24,15 @@ function uw_boundless_preprocess_html(&$variables) {
 /**
  * Add in some variables for use in page.tpl.php
  *
- * Implements hook_preprocess_page()
+ * Implements template_preprocess_page(&$variables)
  * 
  * @param type &$variables
  */
 function uw_boundless_preprocess_page(&$variables) {
-    
+
     // reset content column class from bootstrap's default col-sm-9 to col-md-8.
-    // the column class for sidebar_second is hard-coded in page.tpl.php 
-    if (!empty($variables['page']['sidebar_second'])) {
+    // the column class for uw-sidebar is hard-coded in page.tpl.php 
+    if (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
         $variables['content_column_class'] = ' class="col-md-8"';
     }
     else {
@@ -39,7 +41,7 @@ function uw_boundless_preprocess_page(&$variables) {
     
 }
 /**
- * Implements hook_process_page()
+ * Implements template_process_page(&$variables)
  *
  * @param array &$variables
  */
@@ -52,19 +54,21 @@ function uw_boundless_process_page(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_block(&$variables)
+ * 
  * Override or insert variables into the block template
+ * 
+ * @notes   adds class widgettitle to blocks in the sidebar
  * 
  * @todo    
  */
 function uw_boundless_preprocess_block(&$variables) {
 
-  // var_dump($vars);
-
   $block = $variables['block'];
-
-  //if ($block->delta == 'YOURBLOCK') {
+   
+  if (($block->region == 'sidebar_first') || ($block->region == 'sidebar_second'))  {
     $variables['title_attributes_array']['class'][] = 'widgettitle';
-  //}
+  }
 
 }
 
@@ -104,20 +108,25 @@ function uw_boundless_menu_link__main_menu($variables) {
 }
 
 /**
- * Overrides bootstrap_breadcrumb().
+ * Overrides bootstrap_breadcrumb($variables).
  *
  * @notes   creates link for last crumb,
  *          add 'current' class to last item,
  *          sets breadcrumbs as an unordered list, 
  *          remove 'breadcrumb' class from the list attributes
+ * 
+ * @todo remove/change class for first item when "Show 'Home' breadcrumb link" is unchecked
  */
 function uw_boundless_breadcrumb($variables) {
     $output = '';
     $breadcrumb = $variables['breadcrumb'];
-        
+    
     // Determine if we are to display the breadcrumb.
     $bootstrap_breadcrumb = theme_get_setting('bootstrap_breadcrumb');
     if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) == 'admin')) && !empty($breadcrumb)) {
+        
+        // remove class when "Show 'Home' breadcrumb link" is unchecked
+        //_uw_boundless_dump(theme_get_setting('bootstrap_breadcrumb_home')); 
         
         // only change if the "Show current page title at end" in the theme is checked
         if (theme_get_setting('bootstrap_breadcrumb_title')) {
@@ -153,11 +162,53 @@ function uw_boundless_breadcrumb($variables) {
      return $output;
 }
 
+/**
+ * New wrapper for search form.
+ * Implements hook_form_BASE_FORM_ID_alter(&$form, &$form_state, $form_id).
+ * 
+ * @param type $form
+ * @param type $form_state
+ * @param type $form_id
+ * 
+ * @notes   sets the overridden theme wrapper bootstrap_search_form_wrapper
+ * 
+ * @todo Extend with options to select the site to be searched
+ */
+function uw_boundless_form_search_block_form_alter(&$form, &$form_state, $form_id) {
+      $form[$form_id]['#theme_wrappers'] = array('bootstrap_search_form_wrapper');
+}
 
 /**
- * Helper function
+ * Overrides bootstrap_bootstrap_search_form_wrapper($variables)
  * 
- * @return string returns a string containing the year or year-range
+ * Theme function implementation for bootstrap_search_form_wrapper.
+ * 
+ * @notes   added class 'search' to button element
+ */
+function uw_boundless_bootstrap_search_form_wrapper($variables) {
+    $output = '<div class="input-group">';
+    $output .= $variables['element']['#children'];
+    $output .= '<span class="input-group-btn">';
+    $output .= '<button type="submit" class="btn btn-default search">';
+    // We can be sure that the font icons exist in CDN.
+    if (theme_get_setting('bootstrap_cdn')) {
+      $output .= _bootstrap_icon('search');
+    }
+    else {
+      $output .= t('Search');
+    }
+    $output .= '</button>';
+    $output .= '</span>';
+    $output .= '</div>';
+    return $output;
+}
+
+/**
+ * Helper function.
+ * 
+ * Returns a string containing the year or year-range used in the uw-footer.
+ * 
+ * @return string 
  */
 function uw_boundless_copyrightyear() {
     $start = "2014";
@@ -167,10 +218,14 @@ function uw_boundless_copyrightyear() {
 
 
 /**
- * temp devel function
+ * Development function.
+ * 
+ * Prints a block of preformatted text in a drupal message.
+ * 
+ * @param type $vars
  */
-function _uw_boundless_printtoscreen($vars) {
-    print '<pre>';
-    print_r($vars);
-    print '</pre>';
+function _uw_boundless_dump($vars) {
+    //$output = '<pre>'.var_export($vars, TRUE).'</pre>';
+    $output = '<pre>'.print_r($vars, TRUE).'</pre>';
+    drupal_set_message($output, 'status');  
 }

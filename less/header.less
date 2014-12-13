@@ -1,1 +1,33 @@
 // Insert your styling here.
+
+// Search form in region search
+// -------------------------
+.uw-search-bar-container form {
+    overflow: hidden;
+}
+.uw-search-bar-container .uw-search-wrapper .block-search .form-control {
+    border-radius: 0;
+    z-index: 0;
+}
+.uw-search-bar-container .uw-search-wrapper .btn.search {
+    border-radius: 0;
+}
+@media only screen and (max-width: 767px) {
+    .uw-search-bar-container .uw-search-wrapper .search {
+        position: relative;
+    }
+}
+
+// main-menu in region navigation
+// -------------------------
+.dawgdrops-menu {
+    left: inherit;
+}
+
+/*.dawgdrops-nav > li > ul {
+    overflow: visible;
+}*/
+/* hide 3rd level menus */
+.dawgdrops-nav > li > ul > li > ul {
+    left: calc(100% + 1px);
+}

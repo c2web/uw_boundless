@@ -10,15 +10,15 @@ base theme = bootstrap
 
 regions[search]         = 'Search'
 regions[navigation]     = 'Navigation'
-;;regions[header]         = 'Top Bar'
+; regions[header]         = 'Top Bar'
 regions[highlighted]    = 'Highlighted'
 regions[help]           = 'Help'
 regions[content]        = 'Content'
-;;regions[sidebar_first]  = 'Primary'
+regions[sidebar_first]  = 'Primary'
 regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
-regions[page_top]       = 'Page top'
-regions[page_bottom]    = 'Page bottom'
+; regions[page_top]       = 'Page top'
+; regions[page_bottom]    = 'Page bottom'
 
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -52,13 +52,14 @@ scripts[] = 'bootstrap/js/popover.js'
 scripts[] = 'bootstrap/js/scrollspy.js'
 scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
-;
-; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
-settings[bootstrap_cdn] = ''
 
-
+; ;;;;;;;;;;;;;;;;;;;;;
+; ;; theme script
+; ;;;;;;;;;;;;;;;;;;;;;
 scripts[] = 'js/script.js'
 
+; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
+; settings[bootstrap_cdn] = ''
 
 ; ;-------------------------
 ; ; METHOD 2: Bootstrap CDN
