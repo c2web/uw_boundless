@@ -38,76 +38,82 @@ function uw_boundless_preprocess_page(&$variables) {
     else {
         $variables['content_column_class'] = ' class="col-sm-12"';
   }
-    
+
 }
 /**
  * Implements template_process_page(&$variables)
  *
  * @param array &$variables
  */
-function uw_boundless_process_page(&$variables) {
-    
-    // create new wrapper when main menu is in region "navigation"
-    if(!empty($variables['page']['navigation']['system_main-menu'])) {
-        $variables['primary_nav']['#theme_wrappers'] = array('menu_tree__main_menu');
-    }
-}
+//function uw_boundless_process_page(&$variables) {
+//    
+//}
 
 /**
  * Implements template_preprocess_block(&$variables)
  * 
  * Override or insert variables into the block template
  * 
- * @notes   adds class widgettitle to blocks in the sidebar
+ * @notes   adds WP classess widget and widgettitle to blocks in the sidebar
  * 
  * @todo    
  */
 function uw_boundless_preprocess_block(&$variables) {
 
-  $block = $variables['block'];
+    $block = $variables['block'];
    
-  if (($block->region == 'sidebar_first') || ($block->region == 'sidebar_second'))  {
-    $variables['title_attributes_array']['class'][] = 'widgettitle';
-  }
+    if (($block->region == 'sidebar_first') || ($block->region == 'sidebar_second'))  {
+        $variables['classes_array'][] = 'widget';
+        $variables['title_attributes_array']['class'][] = 'widgettitle';
+    }
 
 }
 
 /**
- * Bootstrap theme wrapper function for the main menu in navigation region
+ * Bootstrap theme wrapper function for the main-menu in navigation region
  */
 function uw_boundless_menu_tree__main_menu(&$variables) {
-  return '<ul class="dawgdrops-nav">' . $variables['tree'] . '</ul>';
+    return '<ul class="dawgdrops-nav">' . $variables['tree'] . '</ul>';
 }
 
 /**
+ * Implements theme_menu_link(array $variables)
+ * Overrides bootstrap_menu_link(array $variables) for the main-menu
+ * 
  * Returns HTML for the main menu links
  *
  * @param array $vars
  * @return string HTML output
  */
-function uw_boundless_menu_link__main_menu($variables) {
+function uw_boundless_menu_link__main_menu(array $variables) {
     $element = $variables['element'];
     $sub_menu = '';
     
-    if ($element['#below']) {
-        // Add our own wrapper.
-        unset($element['#below']['#theme_wrappers']);
-        $sub_menu = '<ul class="dawgdrops-menu">' . drupal_render($element['#below']) . '</ul>';
-    }
-    // Generate as standard dropdown.
+    // Generate as dawgdrops-item.
     $element['#attributes']['class'][] = 'dawgdrops-item';
     
-    // Set dropdown trigger element to # to prevent inadvertant page loading
-    // when a submenu link is clicked.
-    //$element['#localized_options']['attributes']['data-target'] = '#';
-    $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
-    //$element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
-      
+    if ($element['#below']) {
+    
+        if ((!empty($element['#original_link']['depth'])) && ($element['#original_link']['depth'] == 1)) {
+            
+            // Set dropdown trigger element to # to prevent inadvertant page loading
+            // when a submenu link is clicked.
+            //$element['#localized_options']['attributes']['data-target'] = '#';
+            $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+            //$element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
+
+            // Add our own wrapper.
+            unset($element['#below']['#theme_wrappers']);
+            $sub_menu = '<ul class="dawgdrops-menu">' . drupal_render($element['#below']) . '</ul>';
+        }
+    } 
+   
     $output = l($element['#title'], $element['#href'], $element['#localized_options']);
     return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
 /**
+ * Implements theme_breadcrumb($variables)
  * Overrides bootstrap_breadcrumb($variables).
  *
  * @notes   creates link for last crumb,
@@ -115,7 +121,7 @@ function uw_boundless_menu_link__main_menu($variables) {
  *          sets breadcrumbs as an unordered list, 
  *          remove 'breadcrumb' class from the list attributes
  * 
- * @todo remove/change class for first item when "Show 'Home' breadcrumb link" is unchecked
+ * @todo fix when "Show 'Home' breadcrumb link" is unchecked in settings
  */
 function uw_boundless_breadcrumb($variables) {
     $output = '';
@@ -124,9 +130,6 @@ function uw_boundless_breadcrumb($variables) {
     // Determine if we are to display the breadcrumb.
     $bootstrap_breadcrumb = theme_get_setting('bootstrap_breadcrumb');
     if (($bootstrap_breadcrumb == 1 || ($bootstrap_breadcrumb == 2 && arg(0) == 'admin')) && !empty($breadcrumb)) {
-        
-        // remove class when "Show 'Home' breadcrumb link" is unchecked
-        //_uw_boundless_dump(theme_get_setting('bootstrap_breadcrumb_home')); 
         
         // only change if the "Show current page title at end" in the theme is checked
         if (theme_get_setting('bootstrap_breadcrumb_title')) {
@@ -203,6 +206,7 @@ function uw_boundless_bootstrap_search_form_wrapper($variables) {
     return $output;
 }
 
+
 /**
  * Helper function.
  * 
@@ -210,7 +214,7 @@ function uw_boundless_bootstrap_search_form_wrapper($variables) {
  * 
  * @return string 
  */
-function uw_boundless_copyrightyear() {
+function _uw_boundless_copyrightyear() {
     $start = "2014";
     $range = ((date('Y') == $start) ? $range = $start : $range = $start."&#45;".date('Y')); 
     return t($range);
@@ -225,7 +229,7 @@ function uw_boundless_copyrightyear() {
  * @param type $vars
  */
 function _uw_boundless_dump($vars) {
-    //$output = '<pre>'.var_export($vars, TRUE).'</pre>';
-    $output = '<pre>'.print_r($vars, TRUE).'</pre>';
-    drupal_set_message($output, 'status');  
+    //$output = '<pre class="uw_boundless_dump">'.var_export($vars, TRUE).'</pre>';
+    $output = '<pre class="uw_boundless_dump">'.print_r($vars, TRUE).'</pre>';
+    echo $output;
 }

@@ -133,10 +133,7 @@
                     <?php print $breadcrumb; ?>
                     </nav>
                 <?php endif;?>
-                  
-                  
-                  <!-- /#uw-mobile-menu -->
-                  
+                                   
                 <a id="main-content"></a>
                 <?php print render($title_prefix); ?>
                 <?php if (!empty($title)): ?>
@@ -215,7 +212,7 @@
                 </ul>
             </nav>
 
-            <p role="contentinfo">&copy; <?php print uw_boundless_copyrightyear(); ?>  University of Washington  |  Seattle, WA</p>
+            <p role="contentinfo">&copy; <?php print _uw_boundless_copyrightyear(); ?>  University of Washington  |  Seattle, WA</p>
 
 
         </footer><!-- /#uw-footer -->

@@ -32,6 +32,7 @@
             $("#quicklinks").toggleClass("open");
         });
         
+        $(".uw_boundless_dump").insertAfter("header.uw-thinstrip");
         
     });//document.ready
     

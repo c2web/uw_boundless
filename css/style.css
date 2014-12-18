@@ -9911,13 +9911,7 @@ a.screen-reader-shortcut:focus {
 }
 .dawgdrops-menu {
   left: inherit;
-}
-/*.dawgdrops-nav > li > ul {
-    overflow: visible;
-}*/
-/* hide 3rd level menus */
-.dawgdrops-nav > li > ul > li > ul {
-  left: calc(101%);
+  top: 78px;
 }
 .page-header {
   margin: 29px 0 14.5px;
