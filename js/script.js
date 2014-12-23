@@ -20,14 +20,14 @@
         /**
          * this displays/hides the search area
          */
-        $("li.uw-search").click(function() {
+        $("button.uw-search").click(function() {
             $("body").toggleClass("search-open");
             $("#uwsearcharea").toggleClass("open");
         });
         /**
          * this displays/hides the quicklinks
          */
-        $("li.uw-quicklinks").click(function() {
+        $("button.uw-quicklinks").click(function() {
             $("#uw-container").toggleClass("open");
             $("#quicklinks").toggleClass("open");
         });

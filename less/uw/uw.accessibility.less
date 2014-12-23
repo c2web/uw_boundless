@@ -1,11 +1,10 @@
-// .checkbox, .radio{
-//     input {
-//         display: block;
-//         position: absolute;
-//         left: -99999px;
-//         top: -99999px;
-//     }
-// }
+ .checkbox, .radio{
+     input {
+         display: block;
+         position: relative;
+         opacity: 0;
+     }
+ }
 a.screen-reader-shortcut {
         position: absolute;
         left: 6px;
@@ -20,4 +19,63 @@ a.screen-reader-shortcut {
             color: @purple;
             box-shadow: 0 0 2px 2px rgba(0,0,0,.6);
         }
+}
+label.screen-reader {
+    position: absolute;
+    opacity: 0;
+    //opacity hack questionable support in IE8
+    //left: -99999px;
+}
+.offscreen {
+    position: absolute;
+    font-size: 1px;
+    left: -9999px;
+}
+#dawgdrops {
+    li.dawgdrops-item{
+        a:focus{
+            text-decoration: underline;
+        }
+        ul.dawgdrops-menu {
+            a:focus {
+                text-decoration: none;
+            }
+        }
+    }
+}
+.uw-body {
+    a:focus, 
+    a:hover {
+        color: @darkgold;
+        border-bottom: 1px solid #BDBDBD;
+        // We don't want buttons underlined on hover
+        &.uw-btn {
+            border-bottom: none;
+        }
+    }
+    a.uw-btn:focus {
+        text-decoration: underline;
+    }
+    .uw-breadcrumbs {
+        a:focus {
+            border-bottom: none;
+            text-decoration: underline;
+        }
+    }
+    .widget {
+        a.widget-link{
+            &:focus,
+            &:hover{
+                border-bottom: none;
+                color: @darkgold;
+            }
+            &:focus {
+                text-decoration: underline;
+                // can't override according to spec. We'll have to redo the structure to get this done
+                //p {
+                //    text-decoration: none;
+                //}
+            }
+        }
+    }
 }

@@ -43,6 +43,15 @@
 		background: url(assets/svg/uw-sprite.svg) no-repeat 0 -431px transparent;
 	}
 
+    div.align-right {
+        float: right;
+    }
+
+    nav {
+        display: inline-block;
+        vertical-align: top;
+    }
+
 	// Audience
 
 	ul.uw-thin-links {
@@ -53,18 +62,10 @@
 		padding: 0;
 
 		li {
-			float: right;
+			float: left;
 			list-style: none;
-			&:first-child a:after {
+			&:last-child a:after {
 				display: none;
-			}
-			&:nth-child(3) {
-				a {
-					padding-right: 10px;
-					&:after {
-						display: none;
-					}
-				}
 			}
 			a, button {
 				font-family: @font-family-headline;
@@ -87,95 +88,100 @@
 				&:hover,
 				&:focus {
 					color: @lightgold;
+                    text-decoration: none;
 				}
 			}
-			&.uw-search {
-				button {
-					text-indent: -99999px;
-					position: relative;
-					padding-right: 78px;
-					border: 2px solid white;
-					background-color: transparent;
-					.border-radius(100%);
-					width: 45px;
-					display: block;
-					padding: 0;
-					height: 45px;
-					margin: 0 15px;
-					overflow: hidden;
-					&:hover, &:focus {
-						border: 2px solid @lightgold;
-						background-color: darken(@purple, 5%);
-						.transition(all .1s linear)
-					}
-					&:after {
-						display: none;
-					}
-					svg {
-						position: absolute;
-						top: 12px;
-						left: 11px;
-					}
-				}
-
-			}
-			&.uw-quicklinks {
-                div {
-                    position: absolute;
-                    top: -22px;
-                    right: 0px;
+        }
+    }
+    button{
+        border: none;
+        display: inline-block;
+        vertical-align: top;
+        font-family: @font-family-headline;
+        font-size: 17px;
+        font-weight: 600;
+	    position: relative;
+        z-index: 1;
+        &.uw-search {
+            text-indent: -99999px;
+            padding-right: 78px;
+            border: 2px solid white;
+            background-color: transparent;
+            .border-radius(100%);
+            width: 45px;
+            padding: 0;
+            height: 45px;
+            margin: 0 15px;
+            overflow: hidden;
+            &:hover, &:focus {
+                border: 2px solid @lightgold;
+                background-color: darken(@purple, 5%);
+                .transition(all .1s linear)
+            }
+            &:after {
+                display: none;
+            }
+            svg {
+                position: absolute;
+                top: 12px;
+                left: 11px;
+            }
+        }
+        &.uw-quicklinks {
+            div {
+                position: absolute;
+                top: -22px;
+                right: 0px;
                     width: 160px;
                     height: 68px;
                     margin: 0px;
                 }
-				button {
-					padding-left: 38px;
-					margin-left: -15px;
-					margin-right: 0;
-					padding-right: 60px;
-					position: relative;
-					z-index: 1;
-					color: #404040;
-					background: url(assets/svg/uw-sprite.svg) no-repeat -451px -235px;
-					overflow: hidden;
-					&:hover svg,
-					&:focus svg {
-						right: 15px;
-					}
-					&:after {
-						display: none;
-					}
-					//&:before {
-					//	position: absolute;
-					//	top: 1px;
-					//	right: -7px;
-					//	content: "";
-					//	width: 51px;
-					//	height: 45px;
-					//	display: block;
-					//	transform: skewX(-14deg);
-					//	background: linear-gradient(to right,#2e2e2e 0,#686868 4%,#686868 100%);
-					//}
-					svg {
-						position: absolute;
-						right: 11px;
-						top: 16px;
-						.transition(right 0.1s ease);
-					}
+                height: 45px;
+                padding-left: 38px;
+                margin-left: -15px;
+                margin-right: 0;
+                padding-right: 54px;
+                color: #404040;
+                background: url(assets/svg/uw-sprite.svg) no-repeat -451px -235px;
+                overflow: hidden;
+                &:hover,
+                &:focus {                	
+                	color: #FFF;
+					text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.54);
+					outline: none;
+					.transition(all 0.2s ease);
+                    svg {
+                    	right: 15px;
+                    }
+                }
+                &:after {
+                    display: none;
+                }
+                //&:before {
+                //	position: absolute;
+                //	top: 1px;
+                //	right: -7px;
+                //	content: "";
+                //	width: 51px;
+                //	height: 45px;
+                //	display: block;
+                //	transform: skewX(-14deg);
+                //	background: linear-gradient(to right,#2e2e2e 0,#686868 4%,#686868 100%);
+                //}
+                svg {
+                    position: absolute;
+                    right: 11px;
+                    top: 16px;
+                    .transition(right 0.2s ease);
+                }
 
-				}
-			}
-            button {
-                border: none;
             }
-		}
-	}
-}
+        }
+    }		
+    // Active state of search button
 
-// Active state of search button
-
-.search-open .uw-thinstrip ul.uw-thin-links li.uw-search button {
-	svg {
+    .search-open .uw-thinstrip button.uw-search {
+        svg {
 		top: -20px;
 		left: 10px;
 	}
@@ -247,63 +253,53 @@
 			top: 4px;
 			background-size: 397px;
 		}
-		ul.uw-thin-links {
-			height: 50px;
-			li {
-				float: none;
-				&.uw-quicklinks button {
-					background-position: -484px -247px;
-					background-size: 900px;
-					text-indent: -99999px;
-					overflow: hidden;
-					padding: 20px 9px 0 0;
-					top: 0;
-					right: 0;
-					position: absolute;
-					&:after {
-						background-position: -253px 4px;
-						background-size: 780px;
-						top: 11px;
-						right: 9px;
-					}
-				}
-                &.uw-quicklinks {
-                	div {
-                	    width: 150px;
-                	}
-				}
-				&.uw-search button {
-					top: 0;
-					right: 36px;
-					height: 47px;
-					width: 65px;
-					margin-right: 0;
-					border: none;
-					overflow: hidden;
-					&:hover {
-						background-color: transparent;
-						border: none;
-						svg {
-							left: 30px;
-						}
-					}
-					svg {
-						top: 14px;
-						left: 29px;
-					}
-					&:before {
-						position: absolute;
-						top: 1px;
-						right: 6px;
-						content: "";
-						width: 51px;
-						height: 45px;
-						display: block;
-					}
-				}
-			}
-		}
+        button {
+            &.uw-quicklinks {
+                background-position: -484px -247px;
+                background-size: 900px;
+                text-indent: -99999px;
+                overflow: hidden;
+                padding: 20px 9px 0 0;
+                top: 0;
+                right: 0;
+                position: absolute;
+                &:after {
+                    background-position: -253px 4px;
+                    background-size: 780px;
+                    top: 11px;
+                    right: 9px;
+                }
+            }
+            &.uw-search{
+                top: 0;
+                right: 36px;
+                height: 47px;
+                width: 47px;
+                margin-right: 10px;
+                border: none;
+                overflow: hidden;
+                position: absolute;
+                &:hover {
+                    background-color: transparent;
+                    border: none;
+                }
+                svg {
+                    top: 14px;
+                    left: 14px;
+                }
+            }
+        }
 	}
+    .search-open {
+        .uw-thinstrip {
+            button.uw-search {
+                svg {
+                    top: -17px;
+                    left: 14px;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (max-width : 767px) {
@@ -329,16 +325,25 @@
 }
 @media only screen and (min-width : 768px) and (max-width : 991px) {
 	.uw-thinstrip {
-		margin-bottom: 50px;
+		height: 140px;
 		.uw-patch {
-			top: -90px;
+			//top: -90px;
 		}
 		.uw-wordmark {
-			top: -60px;
+			//top: -60px;
+            z-index: 2;
 		}
+        div.align-right {
+            position: relative;
+            nav#search-quicklinks {
+                position:absolute;
+                top:0px;
+                right:0px;
+            }
+        }
 		ul.uw-thin-links {
 			li {
-				float: none;
+				//float: none;
 			}
 			&:before {
 				position: absolute;

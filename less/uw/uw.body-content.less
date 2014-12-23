@@ -2,7 +2,7 @@
 
 ul {
 	padding-left: 25px;
-	list-style-position: inside;
+	//list-style-position: inside;
 }
 
 // Basic styles 
@@ -18,7 +18,7 @@ iframe {
 
 .intro {
 	font-family: @font-family-headline;
-	font-size: 25px;
+	font-size: 23px;
 	font-weight: 400;
 	line-height: 1.5;
 	margin-bottom: 20px;
@@ -31,13 +31,13 @@ iframe {
 
 a.more {
   position: relative;
-  display: inline-block;
+ // display: inline-block;
   &:after {
     background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
     content: "";
     position: absolute;
-    right: -19px;
-    bottom: 3px;
+    right: -24px;
+    bottom: 0px;
     width: 14px;
     height: 21px;
     .rotate(90deg);
@@ -75,11 +75,12 @@ a.more {
 	}
 	.uw-site-title {
 		position: absolute;
-		top: -155px;
+		top: -150px;
 		left: 11px;
 		color: #fff;
 		font-family: @font-family-headline;
-		font-size: 45px;
+		font-size: 50px;
+		line-height: 55px;
 		font-weight: 900;
 		-webkit-font-smoothing: antialiased;
 		span {
@@ -215,6 +216,7 @@ span.next-page {
 		.uw-site-title {
 			color: @purple;
 			font-size: 25px;
+			line-height: 1.2;
 			font-weight: 900;
 			margin: -20px -20px 20px -20px;
 			padding: 15px 15px 15px 20px;

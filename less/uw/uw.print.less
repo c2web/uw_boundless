@@ -5,15 +5,39 @@
 
 @media print {
 
-
   .uw-thinstrip,
   #dawgdrops,
   #quicklinks,
   #uwsearcharea,
   .uw-breadcrumbs,
+  .uw-hero-image,
   .uw-hero-image:after,
-  .uw-hero-image:before {
-    display: none;
+  .uw-hero-image:before,
+  .uw-news-image,
+  .site-news.single .uw-site-title,
+  .screen-reader-shortcut,
+  #wpadminbar,
+  #respond,
+  .uw-footer h4,
+  .uw-footer .footer-social,
+  .uw-footer > a,
+  .uw-footer {
+    display: none !important;
+  }
+  .uw-footer {
+    border-top: none;
+     ul.footer-links li a {
+      color: #fff !important;
+    }
+  }
+  .info-box {
+    margin-left: 0;
+  }
+  .widget {
+    padding-left: 0;
+  }
+  ul.uw-sidebar-menu {
+    margin-top: 0;
   }
 
   * {
@@ -21,6 +45,8 @@
     color: #000 !important; // Black prints faster: h5bp.com/s
     background: transparent !important;
     box-shadow: none !important;
+    position: static !important;
+    overflow: visible !important;
   }
 
   a,

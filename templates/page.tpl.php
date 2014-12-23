@@ -27,6 +27,10 @@
  * - $site_slogan: The slogan of the site, empty when display has been disabled
  *   in theme settings.
  *
+ * UW Boundless:
+ * - $uw_sidebar_menu (HTML content): content containing the sidebar menu
+ * - $uw_copyright_year (HTML content)
+ * 
  * Navigation:
  * - $main_menu (array): An array containing the Main menu links for the
  *   site, if they have been configured.
@@ -55,6 +59,7 @@
  *   comment/reply/12345).
  *
  * Regions:
+ * - $page['search']: UW Boundless specific region for a search form.
  * - $page['help']: Dynamic help text, mostly for admin pages.
  * - $page['highlighted']: Items for the highlighted content region.
  * - $page['content']: The main content of the current page.
@@ -162,6 +167,10 @@
                 
             <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
                 <aside class="col-md-4 uw-sidebar" role="complementary">
+                <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>
+                    <nav role="navigation" aria-label="relative"><?php print render($uw_sidebar_menu); ?></nav>
+                    <!-- /#uw-sidebar-menu -->
+                <?php endif; ?>
                 <?php print render($page['sidebar_first']); ?>
                 <?php print render($page['sidebar_second']); ?>
                 </aside>  <!-- /#sidebar-second -->
@@ -170,15 +179,12 @@
             </div>
 
         </div><!-- /#uw-body -->
-        
-        
+                
         <footer class="footer container">
           <?php print render($page['footer']); ?>
-        </footer>
-        
-        
+        </footer><!-- /#page footer -->
+                
         <footer class="uw-footer">
-
             <a href="http://www.washington.edu" class="footer-wordmark">University of Washington</a>
 
             <a href="http://www.washington.edu/boundless/be-boundless/"><h3 class="be-boundless">Be boundless</h3></a>
@@ -212,9 +218,7 @@
                 </ul>
             </nav>
 
-            <p role="contentinfo">&copy; <?php print _uw_boundless_copyrightyear(); ?>  University of Washington  |  Seattle, WA</p>
-
-
+            <p role="contentinfo">&copy; <?php print render($uw_copyright_year); ?>  University of Washington  |  Seattle, WA</p>
         </footer><!-- /#uw-footer -->
 
     </div><!-- /#uw-container-inner -->

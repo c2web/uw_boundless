@@ -24,9 +24,9 @@
 			}
 		}
 		&.current {
-			a {
-				color: @lightgold;						
-			}
+            span {
+                color: @darkgold;						
+            }
 			&:after {
 				display: none;
 			}	
@@ -55,8 +55,12 @@
 		&:empty {
 			display: none;
 		}
+		a:hover {
+			border-bottom: none;
+			text-decoration: underline;
+		}
 	}
-	a {
+	a, span {
 		font-family: @font-family-headline;
 		color: #535353;
 		font-weight: 500;
@@ -67,8 +71,6 @@
 		overflow: hidden;
 		max-width: 250px;
 		//Caret
-
-
 	}
 }
 

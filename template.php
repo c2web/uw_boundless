@@ -37,17 +37,14 @@ function uw_boundless_preprocess_page(&$variables) {
     }
     else {
         $variables['content_column_class'] = ' class="col-sm-12"';
-  }
+    }
 
+    //new variable for the sidebar menu
+    $variables['uw_sidebar_menu'] = _uw_boundless_uw_sidebar_menu();
+    
+    // new variable to display copyright
+    $variables['uw_copyright_year'] = _uw_boundless_copyrightyear();
 }
-/**
- * Implements template_process_page(&$variables)
- *
- * @param array &$variables
- */
-//function uw_boundless_process_page(&$variables) {
-//    
-//}
 
 /**
  * Implements template_preprocess_block(&$variables)
@@ -146,8 +143,10 @@ function uw_boundless_breadcrumb($variables) {
             );
 
             // set link as data for the active crumb and add the 'current' class.
+            // data is currently set as html content, not as a link
             $breadcrumb[$active_key] = array(
-                'data' => theme('link', $active_link),
+                //'data' => theme('link', $active_link),
+                'data' => '<span>'.$breadcrumb[$active_key]['data'].'</span>',
                 'class' => array('current active'),
             );
         }
@@ -208,11 +207,13 @@ function uw_boundless_bootstrap_search_form_wrapper($variables) {
 
 
 /**
- * Helper function.
+ * Local function.
  * 
- * Returns a string containing the year or year-range used in the uw-footer.
+ * Returns a string containing the year or year-range.
  * 
  * @return string 
+ * 
+ * @see uw_boundless_preprocess_page(&$variables)
  */
 function _uw_boundless_copyrightyear() {
     $start = "2014";
@@ -220,11 +221,126 @@ function _uw_boundless_copyrightyear() {
     return t($range);
 }
 
+/**
+ * Local function 
+ * 
+ * Builds a dynamic sidebar menu.
+ * 
+ * @return HTML content
+ * 
+ * @todo Refactor. build item list and links as proper arrays
+ */
+function _uw_boundless_uw_sidebar_menu() {
+          
+    // get some data
+    $current_path = current_path();
+    $active_trail = menu_get_active_trail();
+    $current_depth = count($active_trail);
+    $active_trail_key =  $current_depth - 1;
+    
+    // get the current menu link
+    $current_link = menu_link_get_preferred($current_path, 'main-menu');
+   
+    $output = TRUE;
+    $output_menu = '';
+    
+    $output_menu .= '<ul class="uw-sidebar-menu first-level">';
+    $output_menu .= '<li class="pagenav">';
+    $output_menu .= l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink'))));
+    $output_menu .= '<ul>';
+    
+    // only display sidebar menu when there's a parent and it's not hidden
+    if ((isset($current_link['plid'])) && (!$current_link['hidden'])) {
+        
+        // first level links
+        if (($current_depth == 2) && ($current_link['has_children'])) {
+            // show sub tree of current node            
+            
+            $output_menu .= '<li class="page_item page_item_has_children current_page_item">';
+            $output_menu .= l($current_link['link_title'], $current_link['link_path']);
+            
+            // parameters to build the tree
+            $parameters = array(
+                'active_trail' => array($current_link['plid']),
+                'only_active_trail' => FALSE,
+                'min_depth' => $current_link['depth']+1,
+                'max_depth' => $current_link['depth']+1,
+                'conditions' => array('plid' => $current_link['mlid']),
+              );  
+            // get the children
+            $children = menu_build_tree($current_link['menu_name'], $parameters);
+            
+            $output_menu .= '<ul class="children">';
+            foreach ($children as $child) {
+                if (!$child['link']['hidden']) {
+                    $output_menu .= '<li class="page_item">';
+                    $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
+                    $output_menu .= '</li>';
+                }
+            }   
+            $output_menu .= '</ul>';
+            $output_menu .= '</li>';
+            
+        }
+        // second level links and deeper
+        elseif (($current_depth > 2)) {
+            // show sub tree of parent and 
+            // display current node as current page item
+            
+            // get active parent by moving one up the trail
+            $active_parent = ($active_trail[$active_trail_key - 1]); 
+            // get the parent menu link
+            $parent_link = menu_link_get_preferred($active_parent['link_path'], 'main-menu');
+            
+            $output_menu .= '<li class="page_item page_item_has_children current_page_ancestor current_page_parent">';
+            $output_menu .= l($parent_link['link_title'], $parent_link['link_path']);
+            
+            // parameters to build the tree
+            $parameters = array(
+                'active_trail' => array($parent_link['plid']),
+                'only_active_trail' => FALSE,
+                'min_depth' => $parent_link['depth']+1,
+                'max_depth' => $parent_link['depth']+1,
+                'conditions' => array('plid' => $parent_link['mlid']),
+              );  
+            // get the children
+            $children = menu_build_tree($parent_link['menu_name'], $parameters);
+            
+            $output_menu .= '<ul class="children">';
+            foreach ($children as $child) {  
+                if ($current_path == $child['link']['link_path']) {
+                    $output_menu .= '<li class="page_item current_page_item">';
+                    $output_menu .= '<span>'.$child['link']['link_title'].'</span>';
+                } else {
+                    $output_menu .= '<li class="page_item">';
+                    $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
+                }
+                $output_menu .= '</li>';
+            }
+            $output_menu .= '</ul>';
+            $output_menu .= '</li>';
+            
+        } else {
+            // link has no children
+            $output = FALSE;
+        }        
+    } else {
+        $output = FALSE;
+    }
+    
+    $output_menu .= '</ul>';
+    $output_menu .= '</li>';
+    $output_menu .= '</ul>';
+        
+    return ($output) ? $output_menu : $output;
+}
+
+
 
 /**
  * Development function.
  * 
- * Prints a block of preformatted text in a drupal message.
+ * Prints a block of preformatted text.
  * 
  * @param type $vars
  */
