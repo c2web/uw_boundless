@@ -35,10 +35,9 @@
          * this displays/hides the mobile-menu
          */
         $("span.uw-mobile-menu-toggle").click(function(event) {
-            //$(".uw-mobile-menu > li").toggle();
-            $(".uw-mobile-menu > li ").toggle(function() {
-              }, function() {
-              });
+            $(".uw-mobile-menu > li").toggle(150, function() {
+                // Animation complete.
+            });
         });
         
         /* temp dev */

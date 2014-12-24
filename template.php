@@ -228,7 +228,7 @@ function _uw_boundless_copyrightyear() {
  * 
  * @return HTML content
  * 
- * @todo Refactor. build item list and links as proper arrays
+ * @todo Refactor
  */
 function _uw_boundless_uw_sidebar_menu() {
           
@@ -243,10 +243,7 @@ function _uw_boundless_uw_sidebar_menu() {
    
     $output = TRUE;
     $output_menu = '';
-    
-    //$output_menu .= '<ul class="uw-sidebar-menu first-level">';
-    //$output_menu .= '<li class="pagenav">';
-    //$output_menu .= l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink'))));
+
     $output_menu .= '<ul>';
     
     // only display sidebar menu when there's a parent and it's not hidden
@@ -308,14 +305,39 @@ function _uw_boundless_uw_sidebar_menu() {
             
             $output_menu .= '<ul class="children">';
             foreach ($children as $child) {  
-                if ($current_path == $child['link']['link_path']) {
-                    $output_menu .= '<li class="page_item current_page_item">';
-                    $output_menu .= '<span>'.$child['link']['link_title'].'</span>';
-                } else {
-                    $output_menu .= '<li class="page_item">';
-                    $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
+                if (!$child['link']['hidden']) {
+                    if ($current_path == $child['link']['link_path']) {
+                        $output_menu .= '<li class="page_item current_page_item">';
+                        $output_menu .= '<span>'.$child['link']['link_title'].'</span>';
+                        if ($child['link']['has_children']) {
+
+                            // get the grandchildren
+                            // parameters to build the tree
+                            $parameters = array(
+                                'active_trail' => array($child['link']['plid']),
+                                'only_active_trail' => FALSE,
+                                'min_depth' => $child['link']['depth']+1,
+                                'max_depth' => $child['link']['depth']+1,
+                                'conditions' => array('plid' => $child['link']['mlid']),
+                              );  
+                            $grandchildren = menu_build_tree($child['link']['menu_name'], $parameters);
+
+                            $output_menu .= '<ul class="children">';
+                            foreach ($grandchildren as $grandchild) {
+                                if (!$grandchild['link']['hidden']) {
+                                    $output_menu .= '<li class="page_item">';
+                                    $output_menu .= l($grandchild['link']['link_title'], $grandchild['link']['link_path']);
+                                    $output_menu .= '</li>';
+                                }
+                            }
+                            $output_menu .= '</ul>';
+                        }
+                    } else {
+                        $output_menu .= '<li class="page_item">';
+                        $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
+                    }
+                    $output_menu .= '</li>';
                 }
-                $output_menu .= '</li>';
             }
             $output_menu .= '</ul>';
             $output_menu .= '</li>';
@@ -329,8 +351,6 @@ function _uw_boundless_uw_sidebar_menu() {
     }
     
     $output_menu .= '</ul>';
-    //$output_menu .= '</li>';
-    //$output_menu .= '</ul>';
         
     return ($output) ? $output_menu : $output;
 }

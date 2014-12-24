@@ -10088,15 +10088,29 @@ label.screen-reader {
 }
 .page-header {
   margin: 29px 0 14.5px;
+  border-bottom: 0;
 }
 .uw-sidebar .region:not(:last-child) {
   padding-bottom: 30px;
 }
+@media only screen and (max-width: 992px) {
+  .uw-sidebar .region {
+    padding-top: 30px;
+  }
+}
+ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-menu {
+  display: none;
+}
+ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-item a:after {
+  background: none;
+}
 .uw-mobile-menu-toggle {
   cursor: pointer;
 }
-.uw-content {
-  padding-bottom: 30px;
+@media only screen and (max-width: 768px) {
+  ul.uw-mobile-menu .uw-mobile-menu-toggle {
+    margin-top: -70px;
+  }
 }
 .radio input[type="radio"],
 .radio-inline input[type="radio"],

@@ -109,7 +109,7 @@
             <li><span class="false"></span><a href="https://www.facebook.com/UofWA" tabindex="0">UW Facebook</a></li> 
             <li><span class="false"></span><a href="https://twitter.com/UW" tabindex="0">UW Twitter</a></li>
         </ul>
-    </nav>
+    </nav><!-- /#quicklinks -->
     
     <div id="uw-container-inner">
         
@@ -145,19 +145,23 @@
                   <h1 class="page-header"><?php print $title; ?></h1>
                 <?php endif; ?>
                 
-                <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>  
-                  <!-- #uw-mobile-menu --> 
+                <!-- #uw-mobile-menu --> 
+                <?php if ((!empty($page['navigation']['system_main-menu'])) && ($is_front || $uw_sidebar_menu)): ?>  
                   <nav role="navigation" aria-label="relative">
                       <ul class="uw-mobile-menu first-level">
                           <span class="uw-mobile-menu-toggle">Menu</span>
-                          <li class="pagenav" style="display: none;">
+                          <li class="pagenav">
                               <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
-                              <?php print render($uw_sidebar_menu); ?>
+                              <?php if ($is_front && !empty($primary_nav)): ?>
+                                <?php print render($primary_nav); ?>
+                              <?php endif; ?> 
+                              <?php if (!$is_front && $uw_sidebar_menu): ?>
+                                <?php print render($uw_sidebar_menu); ?>
+                              <?php endif; ?> 
                           </li>
                       </ul>
                   </nav>
-                   <!-- /#uw-mobile-menu -->
-                <?php endif; ?>
+                <?php endif; ?><!-- /#uw-mobile-menu -->
                    
                 <?php print render($title_suffix); ?>
                 <?php print $messages; ?>
@@ -182,9 +186,8 @@
                 
             <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
                 <aside class="col-md-4 uw-sidebar" role="complementary">
+                <!-- #uw-sidebar-menu -->
                 <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>
-                    <!--<nav role="navigation" aria-label="relative"><?php //print render($uw_sidebar_menu); ?></nav>-->
-                   <!-- #uw-sidebar-menu -->
                     <nav role="navigation" aria-label="relative">
                         <ul class="uw-sidebar-menu first-level">
                             <li class="pagenav">
@@ -193,8 +196,8 @@
                             </li>
                         </ul>
                     </nav>
-                    <!-- /#uw-sidebar-menu -->
-                <?php endif; ?>
+                <?php endif; ?><!-- /#uw-sidebar-menu -->
+                
                 <?php print render($page['sidebar_first']); ?>
                 <?php print render($page['sidebar_second']); ?>
                 </aside>  <!-- /#sidebar-second -->

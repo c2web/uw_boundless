@@ -9,6 +9,7 @@
 // -------------------------
 .page-header {
     margin: 29px 0 14.5px;
+    border-bottom: 0;
 }
 
 // Sidebar
@@ -16,18 +17,33 @@
 .uw-sidebar .region:not(:last-child) {
     padding-bottom: 30px;
 }
+@media only screen and (max-width: 992px) {
+    .uw-sidebar .region {
+        padding-top: 30px;
+    }
+}
 
 // Mobile menu
 // -------------------------
+
+// hide the dropdowns on the frontpage
+ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-menu {
+    display: none;
+}
+ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-item a:after {
+    background: none;
+}
+
 .uw-mobile-menu-toggle {
     cursor: pointer;
 }
-
+@media only screen and (max-width: 768px) {
+    ul.uw-mobile-menu .uw-mobile-menu-toggle {
+        margin-top: -70px;
+    }
+}
 // Content
 // -------------------------
-.uw-content {
-    padding-bottom: 30px;
-}
 
 // form elements
 // -------------------------
