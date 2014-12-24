@@ -10092,6 +10092,12 @@ label.screen-reader {
 .uw-sidebar .region:not(:last-child) {
   padding-bottom: 30px;
 }
+.uw-mobile-menu-toggle {
+  cursor: pointer;
+}
+.uw-content {
+  padding-bottom: 30px;
+}
 .radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],

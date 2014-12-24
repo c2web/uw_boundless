@@ -244,9 +244,9 @@ function _uw_boundless_uw_sidebar_menu() {
     $output = TRUE;
     $output_menu = '';
     
-    $output_menu .= '<ul class="uw-sidebar-menu first-level">';
-    $output_menu .= '<li class="pagenav">';
-    $output_menu .= l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink'))));
+    //$output_menu .= '<ul class="uw-sidebar-menu first-level">';
+    //$output_menu .= '<li class="pagenav">';
+    //$output_menu .= l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink'))));
     $output_menu .= '<ul>';
     
     // only display sidebar menu when there's a parent and it's not hidden
@@ -329,8 +329,8 @@ function _uw_boundless_uw_sidebar_menu() {
     }
     
     $output_menu .= '</ul>';
-    $output_menu .= '</li>';
-    $output_menu .= '</ul>';
+    //$output_menu .= '</li>';
+    //$output_menu .= '</ul>';
         
     return ($output) ? $output_menu : $output;
 }

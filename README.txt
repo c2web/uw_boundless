@@ -77,3 +77,6 @@ In the "Bootstrap Settings" section, on the "Components" tab:
 Expand "REGION WELLS"
 Make sure that none of the region have classes specified. 
 
+11. jQuery update
+Navigate to Administration > Configuration > Development > jQuery update
+Make sure the "Default jQuery Version" is 1.10

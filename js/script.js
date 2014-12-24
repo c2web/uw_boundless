@@ -31,7 +31,17 @@
             $("#uw-container").toggleClass("open");
             $("#quicklinks").toggleClass("open");
         });
+        /**
+         * this displays/hides the mobile-menu
+         */
+        $("span.uw-mobile-menu-toggle").click(function(event) {
+            //$(".uw-mobile-menu > li").toggle();
+            $(".uw-mobile-menu > li ").toggle(function() {
+              }, function() {
+              });
+        });
         
+        /* temp dev */
         $(".uw_boundless_dump").insertAfter("header.uw-thinstrip");
         
     });//document.ready

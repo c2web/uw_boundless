@@ -144,6 +144,21 @@
                 <?php if (!empty($title)): ?>
                   <h1 class="page-header"><?php print $title; ?></h1>
                 <?php endif; ?>
+                
+                <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>  
+                  <!-- #uw-mobile-menu --> 
+                  <nav role="navigation" aria-label="relative">
+                      <ul class="uw-mobile-menu first-level">
+                          <span class="uw-mobile-menu-toggle">Menu</span>
+                          <li class="pagenav" style="display: none;">
+                              <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
+                              <?php print render($uw_sidebar_menu); ?>
+                          </li>
+                      </ul>
+                  </nav>
+                   <!-- /#uw-mobile-menu -->
+                <?php endif; ?>
+                   
                 <?php print render($title_suffix); ?>
                 <?php print $messages; ?>
                 <?php if (!empty($tabs)): ?>
@@ -168,7 +183,16 @@
             <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
                 <aside class="col-md-4 uw-sidebar" role="complementary">
                 <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>
-                    <nav role="navigation" aria-label="relative"><?php print render($uw_sidebar_menu); ?></nav>
+                    <!--<nav role="navigation" aria-label="relative"><?php //print render($uw_sidebar_menu); ?></nav>-->
+                   <!-- #uw-sidebar-menu -->
+                    <nav role="navigation" aria-label="relative">
+                        <ul class="uw-sidebar-menu first-level">
+                            <li class="pagenav">
+                                <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
+                                <?php print render($uw_sidebar_menu); ?>
+                            </li>
+                        </ul>
+                    </nav>
                     <!-- /#uw-sidebar-menu -->
                 <?php endif; ?>
                 <?php print render($page['sidebar_first']); ?>
