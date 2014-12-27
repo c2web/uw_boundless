@@ -34,8 +34,13 @@
         /**
          * this displays/hides the mobile-menu
          */
-        $("span.uw-mobile-menu-toggle").click(function(event) {
-            $(".uw-mobile-menu > li").toggle(150, function() {
+        $(".front span.uw-mobile-menu-toggle").click(function(event) {
+            $(".uw-mobile-menu > div").toggle(200, "swing", function() {
+                // Animation complete.
+            });
+        });
+        $(".not-front span.uw-mobile-menu-toggle").click(function(event) {
+            $(".uw-mobile-menu > li").toggle(200, "swing", function() {
                 // Animation complete.
             });
         });

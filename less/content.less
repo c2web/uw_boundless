@@ -25,13 +25,24 @@
 
 // Mobile menu
 // -------------------------
-
-// hide the dropdowns on the frontpage
-ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-menu {
-    display: none;
-}
-ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-item a:after {
-    background: none;
+// frontpage mobile-menu nav container
+.menu-main-menu-container {
+    margin-right: -15px;
+    margin-left: -15px;
+    
+    // hide the submenu dropdowns on the frontpage mobile-menu
+    .dawgdrops-menu {
+        display: none;
+    }
+    
+    .dawgdrops-item a {
+        font-weight: 400;
+        text-transform: none;
+        
+        &:after {
+            background: none;
+        }
+    }
 }
 
 .uw-mobile-menu-toggle {

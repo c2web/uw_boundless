@@ -14,6 +14,9 @@
  * @see html.tpl.php
  */
 function uw_boundless_preprocess_html(&$variables) {
+    // Adding jQuery UI effects library
+    drupal_add_library('system', 'effects');
+    
     // Adding the UW Alert Banner script  
     $options = array();
     $options['type'] = 'external';

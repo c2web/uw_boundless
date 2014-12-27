@@ -78,7 +78,7 @@
  * @ingroup themeable
  */
 ?>
-<div id="uwsearcharea" class="uw-search-bar-container">
+<div id="uwsearcharea" aria-hidden="true" class="uw-search-bar-container">
     <div class="container no-height">
         <div class="center-block uw-search-wrapper">
             <?php print render($page['search']); ?>
@@ -89,7 +89,7 @@
 
 <div id="uw-container">
 
-    <nav id="quicklinks" role="navigation" aria-label="quick links" aria-hidden="" class="">
+    <nav id="quicklinks" role="navigation" aria-label="quick links" aria-hidden="true" class="">
         <ul id="big-links"> 
             <li><span class="icon-myuw"></span><a href="http://myuw.washington.edu" tabindex="0">MyUW</a></li> 
             <li><span class="icon-calendar"></span><a href="http://uw.edu/calendar" tabindex="0">Calendar</a></li> 
@@ -123,6 +123,7 @@
         </nav>
         <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
          
+        <a id="main-content"></a>
         <div class="container uw-body">
                         
             <div class="row">
@@ -139,7 +140,6 @@
                     </nav>
                 <?php endif;?>
                                    
-                <a id="main-content"></a>
                 <?php print render($title_prefix); ?>
                 <?php if (!empty($title)): ?>
                   <h1 class="page-header"><?php print $title; ?></h1>
@@ -147,18 +147,23 @@
                 
                 <!-- #uw-mobile-menu --> 
                 <?php if ((!empty($page['navigation']['system_main-menu'])) && ($is_front || $uw_sidebar_menu)): ?>  
-                  <nav role="navigation" aria-label="relative">
+                  <nav id="mobile-relative" role="navigation" aria-label="relative">
                       <ul class="uw-mobile-menu first-level">
                           <span class="uw-mobile-menu-toggle">Menu</span>
-                          <li class="pagenav">
-                              <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
-                              <?php if ($is_front && !empty($primary_nav)): ?>
+                          <!-- #front -->   
+                          <?php if ($is_front && !empty($primary_nav)): ?>
+                            <div class="menu-main-menu-container">
                                 <?php print render($primary_nav); ?>
-                              <?php endif; ?> 
-                              <?php if (!$is_front && $uw_sidebar_menu): ?>
+                            </div>
+                          <?php endif; ?><!-- /#front -->     
+                          <!-- #not-front -->   
+                          <?php if (!$is_front && $uw_sidebar_menu): ?>
+                            <li class="pagenav">
+                                <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
                                 <?php print render($uw_sidebar_menu); ?>
-                              <?php endif; ?> 
-                          </li>
+                            </li>
+                          <?php endif; ?><!-- /#not-front -->                  
+                          
                       </ul>
                   </nav>
                 <?php endif; ?><!-- /#uw-mobile-menu -->

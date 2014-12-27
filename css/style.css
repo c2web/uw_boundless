@@ -10098,10 +10098,18 @@ label.screen-reader {
     padding-top: 30px;
   }
 }
-ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-menu {
+.menu-main-menu-container {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.menu-main-menu-container .dawgdrops-menu {
   display: none;
 }
-ul.uw-mobile-menu .menu.nav.navbar-nav .dawgdrops-item a:after {
+.menu-main-menu-container .dawgdrops-item a {
+  font-weight: 400;
+  text-transform: none;
+}
+.menu-main-menu-container .dawgdrops-item a:after {
   background: none;
 }
 .uw-mobile-menu-toggle {
