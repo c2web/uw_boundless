@@ -21,7 +21,7 @@ The following documentation assumes:
 - the default content feed as the default front page 
 Some instructions may not apply exactly to existing Drupal 7 installations.
 
-1. Download this theme and put it in the sites/all/themes/ folder of you site.
+1. Download this theme and put it in the sites/all/themes/ folder of your site.
 
 2. Enable the theme
 Navigate to Administration > Appearance and make sure that the UW Boundless theme is the enabled and default theme.
