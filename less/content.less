@@ -1,9 +1,19 @@
 // Insert your styling here.
-
+// Site title
+// -------------------------
+@media only screen and (max-width: 767px) {
+    .uw-body {
+        .uw-site-title {
+            padding-right: 75px;
+        }
+    }
+}
 // Breadcrumbs
 // -------------------------
-.uw-breadcrumbs span {
-    padding-top: 0;
+.uw-breadcrumbs {
+    span {
+        padding-top: 0;
+    }
 }
 // Page header
 // -------------------------
@@ -14,47 +24,76 @@
 
 // Sidebar
 // -------------------------
-.uw-sidebar .region:not(:last-child) {
-    padding-bottom: 30px;
+.uw-sidebar {
+    .region:not(:last-child) {
+        padding-bottom: 30px;
+    }
 }
 @media only screen and (max-width: 992px) {
-    .uw-sidebar .region {
-        padding-top: 30px;
+    .uw-sidebar { 
+        .region {
+            padding-top: 30px;
+        }
     }
 }
 
 // Mobile menu
 // -------------------------
 // frontpage mobile-menu nav container
-.menu-main-menu-container {
-    margin-right: -15px;
-    margin-left: -15px;
-    
-    // hide the submenu dropdowns on the frontpage mobile-menu
-    .dawgdrops-menu {
-        display: none;
-    }
-    
-    .dawgdrops-item a {
-        font-weight: 400;
-        text-transform: none;
-        
-        &:after {
-            background: none;
+.front {
+    nav#mobile-relative {
+        margin-right: -15px;
+        margin-left: -15px;
+
+        // hide the submenu dropdowns on the frontpage mobile-menu
+        .dawgdrops-menu {
+            display: none;
+        }
+
+        .dawgdrops-item a {
+            font-weight: 400;
+            text-transform: none;
+
+            &:after {
+                background: none;
+            }
         }
     }
 }
 
-.uw-mobile-menu-toggle {
-    cursor: pointer;
-}
 @media only screen and (max-width: 768px) {
-    ul.uw-mobile-menu .uw-mobile-menu-toggle {
-        margin-top: -70px;
+    nav#mobile-relative {
+        button.uw-mobile-menu-toggle {
+            margin-top: -65px;
+            margin-right: 0;
+        }
     }
 }
+
 // Content
 // -------------------------
+// path fix from uw.body-content.less
+a.more {
+    &:after {
+        background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+    }
+}
+// path fix from uw.body-content.less
+span.next-page {
+    a {
+        &:after {
+            background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+      }
+    }
+}
+// path fix from uw.body-content.less
+.links {
+    a {
+        &:after {
+            background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+        }
+    }
+}
 
 // form elements
 // -------------------------

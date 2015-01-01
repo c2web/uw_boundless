@@ -29,7 +29,7 @@
  *
  * UW Boundless:
  * - $uw_sidebar_menu (HTML content): content containing the sidebar menu
- * - $uw_copyright_year (HTML content)
+ * - $uw_copyright_year (HTML content, in uw-footer.inc)
  * 
  * Navigation:
  * - $main_menu (array): An array containing the Main menu links for the
@@ -78,50 +78,32 @@
  * @ingroup themeable
  */
 ?>
-<div id="uwsearcharea" aria-hidden="true" class="uw-search-bar-container">
+<div id="uwsearcharea" aria-hidden="true" class="uw-search-bar-container" tabindex="-1">
     <div class="container no-height">
         <div class="center-block uw-search-wrapper">
             <?php print render($page['search']); ?>
          </div>
     </div>
-</div>
-<!-- /#uwsearcharea -->
+</div><!-- /#uwsearcharea -->
 
 <div id="uw-container">
-
-    <nav id="quicklinks" role="navigation" aria-label="quick links" aria-hidden="true" class="">
-        <ul id="big-links"> 
-            <li><span class="icon-myuw"></span><a href="http://myuw.washington.edu" tabindex="0">MyUW</a></li> 
-            <li><span class="icon-calendar"></span><a href="http://uw.edu/calendar" tabindex="0">Calendar</a></li> 
-            <li><span class="icon-directories"></span><a href="http://uw.edu/directory/" tabindex="0">Directories</a></li> 
-            <li><span class="icon-libraries"></span><a href="http://www.lib.washington.edu/" tabindex="0">Libraries</a></li> 
-            <li><span class="icon-medicine"></span><a href="http://www.uwmedicine.org/" tabindex="0">UW Medicine</a></li> 
-            <li><span class="icon-maps"></span><a href="http://uw.edu/maps" tabindex="0">Maps</a></li> 
-            <li><span class="icon-uwtoday"></span><a href="http://www.uw.edu/news" tabindex="0">UW Today</a></li>
-        </ul>
-        <h3>Helpful Links</h3>
-        <ul id="little-links">
-            <li><span class="false"></span><a href="http://www.washington.edu/itconnect/forstudents.html" tabindex="0">Computing/IT</a></li> 
-            <li><span class="false"></span><a href="http://f2.washington.edu/fm/payroll/payroll/ESS" tabindex="0">Employee Self Service</a></li> 
-            <li><span class="false"></span><a href="http://www.hfs.washington.edu/huskycard/" tabindex="0">Husky Card</a></li> 
-            <li><span class="false"></span><a href="http://www.bothell.washington.edu/" tabindex="0">UW Bothell</a></li> 
-            <li><span class="false"></span><a href="http://www.tacoma.uw.edu/" tabindex="0">UW Tacoma</a></li> 
-            <li><span class="false"></span><a href="https://www.facebook.com/UofWA" tabindex="0">UW Facebook</a></li> 
-            <li><span class="false"></span><a href="https://twitter.com/UW" tabindex="0">UW Twitter</a></li>
-        </ul>
-    </nav><!-- /#quicklinks -->
+    
+    <?php include_once $directory . "/templates/includes/quicklinks.inc"; ?>
+    <!-- /#quicklinks -->
     
     <div id="uw-container-inner">
         
         <?php include_once $directory . "/templates/includes/thinstrip.inc"; ?>
         <!-- /#uw-thinstrip -->
 
-        <nav id="dawgdrops" aria-label="Main menu" role="navigation">
+        <nav id="dawgdrops" aria-label="Main menu" role="navigation" tabindex="0">
             <div class="dawgdrops-inner container">
                 <?php print render($page['navigation']); ?>
             </div>
-        </nav>
+        </nav><!-- /#dawgdrops -->
+        
         <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
+        <!-- /#uw-hero-image -->
          
         <a id="main-content"></a>
         <div class="container uw-body">
@@ -145,28 +127,25 @@
                   <h1 class="page-header"><?php print $title; ?></h1>
                 <?php endif; ?>
                 
-                <!-- #uw-mobile-menu --> 
                 <?php if ((!empty($page['navigation']['system_main-menu'])) && ($is_front || $uw_sidebar_menu)): ?>  
                   <nav id="mobile-relative" role="navigation" aria-label="relative">
+                      <button class="uw-mobile-menu-toggle">Menu</button>
                       <ul class="uw-mobile-menu first-level">
-                          <span class="uw-mobile-menu-toggle">Menu</span>
-                          <!-- #front -->   
                           <?php if ($is_front && !empty($primary_nav)): ?>
-                            <div class="menu-main-menu-container">
+                            <li class="pagenav">
+                                <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
                                 <?php print render($primary_nav); ?>
-                            </div>
-                          <?php endif; ?><!-- /#front -->     
-                          <!-- #not-front -->   
+                            </li><!-- /#primary_nav --> 
+                          <?php endif; ?>     
                           <?php if (!$is_front && $uw_sidebar_menu): ?>
                             <li class="pagenav">
                                 <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
                                 <?php print render($uw_sidebar_menu); ?>
-                            </li>
-                          <?php endif; ?><!-- /#not-front -->                  
-                          
+                            </li><!-- /#uw_sidebar_menu --> 
+                          <?php endif; ?>
                       </ul>
-                  </nav>
-                <?php endif; ?><!-- /#uw-mobile-menu -->
+                  </nav><!-- /#uw-mobile-menu -->
+                <?php endif; ?>
                    
                 <?php print render($title_suffix); ?>
                 <?php print $messages; ?>
@@ -191,21 +170,20 @@
                 
             <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
                 <aside class="col-md-4 uw-sidebar" role="complementary">
-                <!-- #uw-sidebar-menu -->
                 <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>
-                    <nav role="navigation" aria-label="relative">
+                    <nav id="desktop-relative" role="navigation" aria-label="relative">
                         <ul class="uw-sidebar-menu first-level">
                             <li class="pagenav">
                                 <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
                                 <?php print render($uw_sidebar_menu); ?>
                             </li>
                         </ul>
-                    </nav>
-                <?php endif; ?><!-- /#uw-sidebar-menu -->
+                    </nav><!-- /#uw-sidebar-menu -->
+                <?php endif; ?>
                 
                 <?php print render($page['sidebar_first']); ?>
                 <?php print render($page['sidebar_second']); ?>
-                </aside>  <!-- /#sidebar-second -->
+                </aside>  <!-- /#uw-sidebar -->
             <?php endif; ?>
               
             </div>
@@ -216,42 +194,9 @@
           <?php print render($page['footer']); ?>
         </footer><!-- /#page footer -->
                 
-        <footer class="uw-footer">
-            <a href="http://www.washington.edu" class="footer-wordmark">University of Washington</a>
-
-            <a href="http://www.washington.edu/boundless/be-boundless/"><h3 class="be-boundless">Be boundless</h3></a>
-
-            <h4>Connect with us:</h4>
-
-            <nav role="navigation" aria-label="social networking">
-                <ul class="footer-social">
-                    <li><a class="facebook" href="http://www.facebook.com/UofWA">Facebook</a></li>
-                    <li><a class="twitter" href="http://twitter.com/UW">Twitter</a></li>
-                    <li><a class="instagram" href="http://instagram.com/uofwa">Instagram</a></li>
-                    <li><a class="tumblr" href="http://uofwa.tumblr.com/">Tumblr</a></li>
-                    <li><a class="youtube" href="http://www.youtube.com/user/uwhuskies">YouTube</a></li>
-                    <li><a class="linkedin" href="http://www.linkedin.com/company/university-of-washington">LinkedIn</a></li>
-                    <li><a class="pinterest" href="http://www.pinterest.com/uofwa/">Pinterest</a></li>
-                    <li><a class="vine" href="https://vine.co/uofwa">Vine</a></li>
-                    <li><a class="google" href="https://plus.google.com/+universityofwashington/posts">Google+</a></li>
-                </ul>
-            </nav>
-
-            <nav role="navigation" aria-label="footer links">
-                <ul class="footer-links">
-                    <li><a href="http://www.uw.edu/accessibility">Accessibility</a></li>
-                    <li><a href="http://uw.edu/home/siteinfo/form">Contact Us</a></li>
-                    <li><a href="http://www.washington.edu/jobs">Jobs</a></li>
-                    <li><a href="http://www.washington.edu/safety">Campus Safety</a></li>
-                    <li><a href="http://myuw.washington.edu/">My UW</a></li>
-                    <li><a href="http://www.washington.edu/admin/rules/wac/rulesindex.html">Rules Docket</a></li>
-                    <li><a href="http://www.washington.edu/online/privacy">Privacy</a></li>
-                    <li><a href="http://www.washington.edu/online/terms">Terms</a></li>
-                </ul>
-            </nav>
-
-            <p role="contentinfo">&copy; <?php print render($uw_copyright_year); ?>  University of Washington  |  Seattle, WA</p>
-        </footer><!-- /#uw-footer -->
+        <?php include_once $directory . "/templates/includes/uw-footer.inc"; ?>
+        <!-- /#uw-footer -->
 
     </div><!-- /#uw-container-inner -->
+
 </div><!-- /#uw-container -->

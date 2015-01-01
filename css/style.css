@@ -1,3 +1,9 @@
+/**
+* style.less imports all required less partials
+*/
+/**
+* Bootstrap
+*/
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -7445,6 +7451,9 @@ table .checkbox input[type="checkbox"] {
 .alert-danger a {
   color: #d62c1a;
 }
+/**
+* UW Marketing & Communications partials
+*/
 @font-face {
   font-family: 'Encode Sans Compressed';
   src: url('assets/fonts/encodesanscondensed-400-regular-webfont.eot');
@@ -8854,7 +8863,8 @@ address {
     float: left;
     display: initial;
   }
-  .uw-breadcrumbs li a {
+  .uw-breadcrumbs li a,
+  .uw-breadcrumbs li span {
     padding: 0 25px 0 0;
   }
   .uw-breadcrumbs li:after {
@@ -8889,7 +8899,7 @@ a.more {
   position: relative;
 }
 a.more:after {
-  background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+  background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
   content: "";
   position: absolute;
   right: -24px;
@@ -8967,7 +8977,7 @@ span.next-page a {
   -moz-border-radius: 0;
 }
 span.next-page a:after {
-  background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+  background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
   content: "";
   position: absolute;
   right: 17px;
@@ -9038,7 +9048,7 @@ span.next-page a:hover {
   position: relative;
 }
 .links a:after {
-  background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+  background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
   content: "";
   opacity: .4;
   position: absolute;
@@ -9101,6 +9111,16 @@ span.next-page a:hover {
   .info-box {
     margin-left: 0;
     width: 100%;
+  }
+  .uw-body-copy h1,
+  .uw-body-copy h2,
+  .uw-body-copy h3,
+  .uw-body-copy h4,
+  .uw-body-copy p:first-of-type {
+    clear: right;
+  }
+  .uw-body-copy > div.row {
+    clear: both;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -9215,8 +9235,7 @@ span.next-page a:hover {
   font-weight: 600;
   cursor: pointer;
 }
-.uw-search-bar-container input.search,
-.uw-search-bar-container button.search {
+.uw-search-bar-container input.search {
   border: none;
   font-size: 0px;
   float: left;
@@ -9772,36 +9791,41 @@ body.home .uw-sidebar-menu {
     padding-top: 40px;
   }
 }
-ul.uw-mobile-menu {
+nav#mobile-relative {
   display: none;
+}
+nav#mobile-relative ul.uw-mobile-menu {
+  display: none;
+  width: 100%;
+  float: right;
+  clear: both;
   list-style: none;
   padding: 0;
   margin: 0 0 25px;
 }
-ul.uw-mobile-menu ul {
+nav#mobile-relative ul.uw-mobile-menu ul {
   display: block;
   list-style: none;
   padding: 0;
   margin: 0;
 }
+nav#mobile-relative ul.uw-mobile-menu li {
+  width: 100%;
+}
 /*==========  Mobile First Method  ==========*/
 /* Custom, iPhone Retina */
 @media only screen and (max-width: 768px) {
-  ul.uw-sidebar-menu {
+  nav#desktop-relative {
     display: none;
   }
   .uw-mobile-menu li {
     background-color: #eee;
     border-bottom: 1px solid #fff;
   }
-  ul.uw-mobile-menu {
+  nav#mobile-relative {
     display: block;
   }
-  ul.uw-mobile-menu .pagenav,
-  ul.uw-mobile-menu > div {
-    display: none;
-  }
-  ul.uw-mobile-menu .uw-mobile-menu-toggle {
+  nav#mobile-relative button.uw-mobile-menu-toggle {
     display: block;
     position: relative;
     float: right;
@@ -9813,13 +9837,15 @@ ul.uw-mobile-menu ul {
     font-weight: 800;
     text-align: center;
     width: 50px;
-    height: 30px;
+    height: 40px;
     text-transform: uppercase;
     color: #4b2e83;
     background: url(assets/svg/uw-sprite.svg) no-repeat -475px 20px transparent;
     background-size: 1200px;
+    border: none;
+    padding: 0 0 20px 0;
   }
-  ul.uw-mobile-menu .uw-mobile-menu-toggle:before {
+  nav#mobile-relative button.uw-mobile-menu-toggle:before {
     content: "";
     position: absolute;
     right: 55px;
@@ -9828,7 +9854,7 @@ ul.uw-mobile-menu ul {
     height: 40px;
     background: url(assets/svg/uw-sprite.svg) no-repeat -600px 0 transparent;
   }
-  ul.uw-mobile-menu li.pagenav ul li.current_page_parent.current_page_ancestor > a:after {
+  nav#mobile-relative ul.uw-mobile-menu li.pagenav ul li.current_page_parent.current_page_ancestor > a:after {
     display: none;
   }
 }
@@ -10064,6 +10090,24 @@ label.screen-reader {
 .uw-body .widget a.widget-link:focus {
   text-decoration: underline;
 }
+/**
+* UW Boundless theme overrides
+*/
+button.search {
+  border: none;
+  font-size: 0px;
+  float: left;
+  display: block;
+  height: 54px;
+  outline: 2px solid #808080;
+  background: url(assets/svg/search.svg) no-repeat center center #808080;
+  position: relative;
+  -webkit-background-size: 22px;
+  -moz-background-size: 22px;
+  -o-background-size: 22px;
+  background-size: 22px;
+  padding: 0px 60px 0px 0px;
+}
 .uw-search-bar-container form {
   overflow: hidden;
 }
@@ -10083,6 +10127,11 @@ label.screen-reader {
   left: inherit;
   top: 78px;
 }
+@media only screen and (max-width: 767px) {
+  .uw-body .uw-site-title {
+    padding-right: 75px;
+  }
+}
 .uw-breadcrumbs span {
   padding-top: 0;
 }
@@ -10098,27 +10147,34 @@ label.screen-reader {
     padding-top: 30px;
   }
 }
-.menu-main-menu-container {
+.front nav#mobile-relative {
   margin-right: -15px;
   margin-left: -15px;
 }
-.menu-main-menu-container .dawgdrops-menu {
+.front nav#mobile-relative .dawgdrops-menu {
   display: none;
 }
-.menu-main-menu-container .dawgdrops-item a {
+.front nav#mobile-relative .dawgdrops-item a {
   font-weight: 400;
   text-transform: none;
 }
-.menu-main-menu-container .dawgdrops-item a:after {
+.front nav#mobile-relative .dawgdrops-item a:after {
   background: none;
 }
-.uw-mobile-menu-toggle {
-  cursor: pointer;
-}
 @media only screen and (max-width: 768px) {
-  ul.uw-mobile-menu .uw-mobile-menu-toggle {
-    margin-top: -70px;
+  nav#mobile-relative button.uw-mobile-menu-toggle {
+    margin-top: -65px;
+    margin-right: 0;
   }
+}
+a.more:after {
+  background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+}
+span.next-page a:after {
+  background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+}
+.links a:after {
+  background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
 }
 .radio input[type="radio"],
 .radio-inline input[type="radio"],

@@ -24,7 +24,7 @@ regions[footer]         = 'Footer'
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
-;
+
 stylesheets[all][] = css/style.css
 
 
@@ -56,6 +56,7 @@ scripts[] = 'bootstrap/js/transition.js'
 ; ;;;;;;;;;;;;;;;;;;;;;
 ; ;; theme script
 ; ;;;;;;;;;;;;;;;;;;;;;
+
 scripts[] = 'js/script.js'
 
 ; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.

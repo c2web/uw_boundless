@@ -15,27 +15,31 @@ Drupal 7 theme implementation:  UW Creative Communications
 
 DOCUMENTATION
 ---------------
-The following documentation assumes a new/fresh installation of Drupal 7. Some instructions may not apply exactly to existing Drupal 7 installations.
+The following documentation assumes:
+- a new/fresh installation of Drupal 7
+- use of the Main menu
+- the default content feed as the default front page 
+Some instructions may not apply exactly to existing Drupal 7 installations.
 
-0. Download this theme and put it in the sites/all/themes/ folder of you site.
+1. Download this theme and put it in the sites/all/themes/ folder of you site.
 
-1. Enable the theme
+2. Enable the theme
 Navigate to Administration > Appearance and make sure that the UW Boundless theme is the enabled and default theme.
 
-2. Bootstrap CDN
+3. Bootstrap CDN
 The theme uses local bootstrap files. Make sure that BootstrapCDN is disabled.
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Bootstrap Settings" section, on the "Advanced" tab:
 Expand "BOOTSTRAPCDN"
 The "BootstrapCDN version" should be disabled.
 
-3. UW Favicon
+4. UW Favicon
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Override Global Settings" section:
 "Toggle display" tab:           "Shortcut icon" should be checked.
 "Shortcut icon settings" tab:   "Use the default shortcut icon" should be checked.
 
-4. Site Name / Site slogan
+5. Site Name / Site slogan
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Override Global Settings" section:
 "Toggle display" tab:           "Site name" should be checked. "Site slogan" can be used optionally.
@@ -44,26 +48,25 @@ To change the name of your site,
 navigate to Administration > Configuration > System > Site Information
 and change the "Site name" field.
 
-5. Main menu visibility
+6. Main menu visibility
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Override Global Settings" section:
 "Toggle display" tab:           "Main menu" should be checked.
 
-6. Main menu region assignment
+7. Main menu region assignment
 Navigate to Administration > Structures > Blocks
 Assign the "Main menu" block to the "Navigation" region
 
-7. Main menu links 
+8. Main menu links 
 Navigate to Administration > Structures > Menu > Main Menu
 Edit each of 1st level menu links and make sure the "Show as expanded" is checked.
 Edit each of 2nd (and subsequent) level menu links and make sure the "Show as expanded" is unchecked.
-There are no theme styles in place for 3rd level menu links (and deeper). 
 
-8. Search form region assignment
+9. Search form region assignment
 Navigate to Administration > Structures > Blocks
 Assign the "Search form" block to the "Search" region
 
-9. Breadcrumbs
+10. Breadcrumbs
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Bootstrap Settings" section, on the "Components" tab:
 Expand "BREADCRUMBS"
@@ -71,12 +74,12 @@ Make sure that the breadcrumbs visibility setting is set to Visible
 Make sure that "Show 'Home' breadcrumb link" is checked
 Make sure that "Show current page title at end " is checked
 
-10. Region wells
+11. Region wells
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Bootstrap Settings" section, on the "Components" tab:
 Expand "REGION WELLS"
-Make sure that none of the region have classes specified. 
+Make sure that none of the regions have classes specified. All regions should display "None" as the selected option.
 
-11. jQuery update
+12. jQuery update
 Navigate to Administration > Configuration > Development > jQuery update
-Make sure the "Default jQuery Version" is 1.10
+Make sure the "Default jQuery Version" is at least 1.7

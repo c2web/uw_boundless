@@ -16,11 +16,29 @@
 function uw_boundless_preprocess_html(&$variables) {
     // Adding jQuery UI effects library
     drupal_add_library('system', 'effects');
+    // for other libraries see https://api.drupal.org/api/drupal/modules!system!system.module/function/system_library/7
+    
+//    // Adding underscore.js  
+//    $options = array();
+//    $options['type'] = 'external';
+//    $options['scope'] = 'header';
+//    $options['group'] = JS_LIBRARY;
+//    $options['weight'] = -20;
+//    drupal_add_js('//underscorejs.org/underscore-min.js', $options);
+//    
+//    // Adding backbone.js  
+//    $options = array();
+//    $options['type'] = 'external';
+//    $options['scope'] = 'header';
+//    $options['group'] = JS_LIBRARY;
+//    $options['weight'] = -19;
+//    drupal_add_js('//backbonejs.org/backbone-min.js', $options);
     
     // Adding the UW Alert Banner script  
     $options = array();
     $options['type'] = 'external';
     $options['scope'] = 'header';
+    $options['group'] = JS_THEME;
     drupal_add_js('//www.washington.edu/static/alert.js', $options);
 }
 
@@ -100,11 +118,12 @@ function uw_boundless_menu_link__main_menu(array $variables) {
             // when a submenu link is clicked.
             //$element['#localized_options']['attributes']['data-target'] = '#';
             $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
+            $element['#localized_options']['attributes']['aria-haspopup'][] = 'true';
             //$element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
 
             // Add our own wrapper.
             unset($element['#below']['#theme_wrappers']);
-            $sub_menu = '<ul class="dawgdrops-menu">' . drupal_render($element['#below']) . '</ul>';
+            $sub_menu = '<ul class="dawgdrops-menu" aria-hidden="true" aria-label="submenu">' . drupal_render($element['#below']) . '</ul>';
         }
     } 
    
@@ -367,8 +386,8 @@ function _uw_boundless_uw_sidebar_menu() {
  * 
  * @param type $vars
  */
-function _uw_boundless_dump($vars) {
-    //$output = '<pre class="uw_boundless_dump">'.var_export($vars, TRUE).'</pre>';
-    $output = '<pre class="uw_boundless_dump">'.print_r($vars, TRUE).'</pre>';
-    echo $output;
-}
+//function _uw_boundless_dump($vars) {
+//    //$output = '<pre class="uw_boundless_dump">'.var_export($vars, TRUE).'</pre>';
+//    $output = '<pre class="uw_boundless_dump">'.print_r($vars, TRUE).'</pre>';
+//    echo $output;
+//}

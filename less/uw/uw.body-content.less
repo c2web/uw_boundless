@@ -33,7 +33,7 @@ a.more {
   position: relative;
  // display: inline-block;
   &:after {
-    background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+    background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
     content: "";
     position: absolute;
     right: -24px;
@@ -115,7 +115,7 @@ span.next-page {
 	  -webkit-border-radius:0;
 	  -moz-border-radius:0;
 	  &:after {
-		background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+		background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
 		content: "";
 		position: absolute;
 		right: 17px;
@@ -185,7 +185,7 @@ span.next-page {
 	a {
 		position: relative;
 		&:after {
-			background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+			background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
 			content: "";
 			opacity: .4;
 			position: absolute;
@@ -266,6 +266,14 @@ span.next-page {
 		margin-left: 0;
 		width: 100%;
 	}
+    .uw-body-copy {
+        h1,h2,h3,h4,p:first-of-type {
+            clear: right;
+        }
+        >div.row {
+            clear:both;
+        }
+    }
 
 }
 @media only screen and (min-width : 768px) {
