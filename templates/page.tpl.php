@@ -168,7 +168,6 @@
                 </div>
                 </section>
                 
-            <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
                 <aside class="col-md-4 uw-sidebar" role="complementary">
                 <?php if ((!empty($page['navigation']['system_main-menu'])) &&  $uw_sidebar_menu): ?>
                     <nav id="desktop-relative" role="navigation" aria-label="relative">
@@ -180,13 +179,13 @@
                         </ul>
                     </nav><!-- /#uw-sidebar-menu -->
                 <?php endif; ?>
-                
-                <?php print render($page['sidebar_first']); ?>
-                <?php print render($page['sidebar_second']); ?>
+                <?php if ((!empty($page['sidebar_first']) || (!empty($page['sidebar_second'])))): ?>
+                    <?php print render($page['sidebar_first']); ?>
+                    <?php print render($page['sidebar_second']); ?>
+                <?php endif; ?>
                 </aside>  <!-- /#uw-sidebar -->
-            <?php endif; ?>
-              
-            </div>
+                
+            </div><!-- /#row -->
 
         </div><!-- /#uw-body -->
                 

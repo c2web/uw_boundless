@@ -246,7 +246,7 @@ function _uw_boundless_copyrightyear() {
 /**
  * Local function 
  * 
- * Builds a dynamic sidebar menu.
+ * Builds a sidebar menu based on the current path.
  * 
  * @return HTML content
  * 
