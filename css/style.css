@@ -10093,7 +10093,17 @@ label.screen-reader {
 /**
 * UW Boundless theme overrides
 */
-button.search {
+.uw-search-bar-container form {
+  overflow: hidden;
+}
+.uw-search-bar-container .uw-search-wrapper .block-search .form-control {
+  border-radius: 0;
+  z-index: 0;
+}
+.uw-search-bar-container .uw-search-wrapper .btn.search {
+  border-radius: 0;
+}
+.uw-search-bar-container button.search {
   border: none;
   font-size: 0px;
   float: left;
@@ -10107,16 +10117,6 @@ button.search {
   -o-background-size: 22px;
   background-size: 22px;
   padding: 0px 60px 0px 0px;
-}
-.uw-search-bar-container form {
-  overflow: hidden;
-}
-.uw-search-bar-container .uw-search-wrapper .block-search .form-control {
-  border-radius: 0;
-  z-index: 0;
-}
-.uw-search-bar-container .uw-search-wrapper .btn.search {
-  border-radius: 0;
 }
 @media only screen and (max-width: 767px) {
   .uw-search-bar-container .uw-search-wrapper .search {
