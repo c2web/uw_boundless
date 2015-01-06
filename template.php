@@ -238,7 +238,7 @@ function uw_boundless_bootstrap_search_form_wrapper($variables) {
  * @see uw_boundless_preprocess_page(&$variables)
  */
 function _uw_boundless_copyrightyear() {
-    $start = "2014";
+    $start = "2015";
     $range = ((date('Y') == $start) ? $range = $start : $range = $start."&#45;".date('Y')); 
     return t($range);
 }
