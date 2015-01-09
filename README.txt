@@ -63,6 +63,7 @@ Edit each of 1st level menu links and make sure the "Show as expanded" is checke
 Edit each of 2nd (and subsequent) level menu links and make sure the "Show as expanded" is unchecked.
 
 9. Search form region assignment
+Enable the core Search module by navigating to Administration > Modules, check "Search" in the core package, and click Save Configuration.
 Navigate to Administration > Structures > Blocks
 Assign the "Search form" block to the "Search" region
 
