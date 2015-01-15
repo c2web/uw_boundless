@@ -24,7 +24,7 @@ function uw_boundless_preprocess_html(&$variables) {
 //    $options['scope'] = 'header';
 //    $options['group'] = JS_LIBRARY;
 //    $options['weight'] = -20;
-//    drupal_add_js('//underscorejs.org/underscore-min.js', $options);
+//    drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js', $options);
 //    
 //    // Adding backbone.js  
 //    $options = array();
@@ -32,7 +32,7 @@ function uw_boundless_preprocess_html(&$variables) {
 //    $options['scope'] = 'header';
 //    $options['group'] = JS_LIBRARY;
 //    $options['weight'] = -19;
-//    drupal_add_js('//backbonejs.org/backbone-min.js', $options);
+//    drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js', $options);
     
     // Adding the UW Alert Banner script  
     $options = array();

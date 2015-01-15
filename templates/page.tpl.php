@@ -102,7 +102,21 @@
             </div>
         </nav><!-- /#dawgdrops -->
         
-        <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
+        <?php if ($is_front): ?>
+            <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w.jpg');">
+                <?php if (!empty($site_name)): ?>
+                    <div class="container">
+                        <h1><?php print $site_name; ?></h1>
+                        <div class="udub-slant"><span></span></div>
+                        <?php if (!empty($site_slogan)): ?>
+                            <p><?php print $site_slogan; ?></p>
+                        <?php endif; ?>   
+                    </div>
+                <?php endif; ?>   
+            </div>
+        <?php else: ?>   
+            <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
+        <?php endif; ?>   
         <!-- /#uw-hero-image -->
          
         <a id="main-content"></a>
@@ -113,7 +127,9 @@
                 <section<?php print $content_column_class; ?>>
                     
                 <?php if (!empty($site_name)): ?>
-                    <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><h2 class="uw-site-title"><?php print $site_name; ?><?php if (!empty($site_slogan)): print '&#32;&#47;&#32;'.$site_slogan; endif; ?></h2></a>
+                    <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><h2 class="uw-site-title"><?php print $site_name; ?></h2>
+                        <p><?php if (!empty($site_slogan)): print $site_slogan; endif; ?></p>
+                    </a>
                 <?php endif; ?>
                     
                 <?php if (!empty($breadcrumb)): ?>

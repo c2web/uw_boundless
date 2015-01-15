@@ -10,8 +10,8 @@ For simplified navigation of the Management menu it is suggested to download and
 
 AUTHORS
 ---------------
-UW "Boundless" brand design:    UW Marketing & Communications
-Drupal 7 theme implementation:  UW Creative Communications
+UW "Boundless" brand design & development:  UW Marketing & Communications
+Drupal 7 theme implementation:              UW Creative Communications
 
 DOCUMENTATION
 ---------------

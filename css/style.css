@@ -10127,9 +10127,51 @@ label.screen-reader {
   left: inherit;
   top: 78px;
 }
+.front .uw-hero-image {
+  height: 595px;
+  padding: 60px 0 0 0;
+}
+.front .uw-hero-image h1 {
+  font-family: "Encode Sans Compressed", sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  font-size: 95px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+.front .uw-hero-image p {
+  color: #fff;
+  line-height: 1.55;
+  -webkit-font-smoothing: auto;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+.uw-body .uw-site-title + p {
+  position: absolute;
+  top: -60px;
+  color: #fff;
+  line-height: 1.55;
+  -webkit-font-smoothing: auto;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
 @media only screen and (max-width: 767px) {
   .uw-body .uw-site-title {
     padding-right: 75px;
+  }
+}
+.front .uw-body .uw-site-title + p {
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  .uw-body .uw-site-title + p {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .front .uw-body .uw-site-title {
+    display: none;
   }
 }
 .uw-breadcrumbs span {
