@@ -1,5 +1,5 @@
 name = UW Boundless
-description = A Bootstrap 7.x-3.0 Sub-theme.
+description = A Bootstrap 7.x-3.0 Sub-theme. This theme can serve as a base-theme for site-specific UW sub-themes. It uses local bootstrap source files as described in "Method 1" of the Bootstrap Theming Guide: https://www.drupal.org/node/1978010 
 core = 7.x
 base theme = bootstrap
 
@@ -8,16 +8,17 @@ base theme = bootstrap
 ;; Regions
 ;;;;;;;;;;;;;;;;;;;;;
 
+regions[search]         = 'Search'
 regions[navigation]     = 'Navigation'
-regions[header]         = 'Top Bar'
+; regions[header]         = 'Top Bar'
 regions[highlighted]    = 'Highlighted'
 regions[help]           = 'Help'
 regions[content]        = 'Content'
 regions[sidebar_first]  = 'Primary'
 regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
-regions[page_top]       = 'Page top'
-regions[page_bottom]    = 'Page bottom'
+; regions[page_top]       = 'Page top'
+; regions[page_bottom]    = 'Page bottom'
 
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -39,22 +40,27 @@ stylesheets[all][] = css/style.css
 ; ;; Scripts
 ; ;;;;;;;;;;;;;;;;;;;;;
 ; 
-; scripts[] = 'bootstrap/js/affix.js'
-; scripts[] = 'bootstrap/js/alert.js'
-; scripts[] = 'bootstrap/js/button.js'
-; scripts[] = 'bootstrap/js/carousel.js'
-; scripts[] = 'bootstrap/js/collapse.js'
-; scripts[] = 'bootstrap/js/dropdown.js'
-; scripts[] = 'bootstrap/js/modal.js'
-; scripts[] = 'bootstrap/js/tooltip.js'
-; scripts[] = 'bootstrap/js/popover.js'
-; scripts[] = 'bootstrap/js/scrollspy.js'
-; scripts[] = 'bootstrap/js/tab.js'
-; scripts[] = 'bootstrap/js/transition.js'
-;
+scripts[] = 'bootstrap/js/affix.js'
+scripts[] = 'bootstrap/js/alert.js'
+scripts[] = 'bootstrap/js/button.js'
+scripts[] = 'bootstrap/js/carousel.js'
+scripts[] = 'bootstrap/js/collapse.js'
+scripts[] = 'bootstrap/js/dropdown.js'
+scripts[] = 'bootstrap/js/modal.js'
+scripts[] = 'bootstrap/js/tooltip.js'
+scripts[] = 'bootstrap/js/popover.js'
+scripts[] = 'bootstrap/js/scrollspy.js'
+scripts[] = 'bootstrap/js/tab.js'
+scripts[] = 'bootstrap/js/transition.js'
+
+; ;;;;;;;;;;;;;;;;;;;;;
+; ;; theme script
+; ;;;;;;;;;;;;;;;;;;;;;
+
+scripts[] = 'js/script.js'
+
 ; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 ; settings[bootstrap_cdn] = ''
-
 
 ; ;-------------------------
 ; ; METHOD 2: Bootstrap CDN

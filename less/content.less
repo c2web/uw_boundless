@@ -1,1 +1,144 @@
 // Insert your styling here.
+// Site title
+// -------------------------
+.uw-body {
+    .uw-site-title {
+        +p {
+            position: absolute;
+            top: -60px;
+            color: #fff;
+            line-height: 1.55;
+            -webkit-font-smoothing: auto;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,.8);
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .uw-body {
+        .uw-site-title {
+            padding-right: 75px;
+        }
+    }
+}
+// some exceptions for site-title and site-slogan 
+.front {
+    .uw-body {
+        .uw-site-title {
+            +p {
+                display: none;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 767px){
+    .uw-body {
+        .uw-site-title {
+            +p {
+                display: none;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 768px) {
+    .front {
+        .uw-body {
+            .uw-site-title {
+                display: none;
+            }
+        }
+    }
+}
+
+// Breadcrumbs
+// -------------------------
+.uw-breadcrumbs {
+    span {
+        padding-top: 0;
+    }
+}
+// Page header
+// -------------------------
+.page-header {
+    margin: 29px 0 14.5px;
+    border-bottom: 0;
+}
+
+// Sidebar
+// -------------------------
+.uw-sidebar {
+    .region:not(:last-child) {
+        padding-bottom: 30px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .uw-sidebar { 
+        .region {
+            padding-top: 30px;
+        }
+    }
+}
+
+// Mobile menu
+// -------------------------
+// frontpage mobile-menu nav container
+.front {
+    nav#mobile-relative {
+        margin-right: -15px;
+        margin-left: -15px;
+
+        // hide the submenu dropdowns on the frontpage mobile-menu
+        .dawgdrops-menu {
+            display: none;
+        }
+
+        .dawgdrops-item a {
+            font-weight: 400;
+            text-transform: none;
+
+            &:after {
+                background: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    nav#mobile-relative {
+        button.uw-mobile-menu-toggle {
+            margin-top: -65px;
+            margin-right: 0;
+        }
+    }
+}
+
+// Content
+// -------------------------
+// path fix from uw.body-content.less
+a.more {
+    &:after {
+        background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+    }
+}
+// path fix from uw.body-content.less
+span.next-page {
+    a {
+        &:after {
+            background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+      }
+    }
+}
+// path fix from uw.body-content.less
+.links {
+    a {
+        &:after {
+            background: url(assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+        }
+    }
+}
+
+// form elements
+// -------------------------
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    margin-left: 0;
+}

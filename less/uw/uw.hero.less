@@ -1,0 +1,98 @@
+// UW Hero
+
+.uw-hero-image,
+.no-uw-hero-image  {
+	height: 170px;
+	background: url('assets/temp/ima.jpg') center center;
+	.background-size(cover);
+	position: relative;
+	// z-index: -1;
+	&:after {
+		position:absolute;
+		bottom: 0;
+		height: 80px;
+		width: 100%;
+		content: "";
+		background: url('assets/images/stripes-dark-tile.png');
+		opacity: .3;
+	}
+	&:before {
+		position:absolute;
+		bottom: 0;
+		left: 0;
+		height: 80px;
+		width: 100%;
+		content: "";
+		opacity: .4;
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .8))) 0 0 no-repeat;
+	}
+}
+.no-uw-hero-image {
+	background: none;
+	background-color: #e8e3d3;
+	height: 130px;
+	&:after {
+		opacity: .2;
+	}
+	&:before {
+		display: none;
+	}
+}
+
+// Dub slant
+
+.udub-slant {
+    overflow: hidden;
+    display: block;
+    margin: 30px 0 25px 0;
+    span {
+      .skew(-25deg,0);
+      display:block;
+      height: 11px;
+      width: 210px;
+      background-color:white;
+      margin: 0 0 0 -5px;
+    }
+}
+
+
+// No image
+
+.page-template-templatestemplate-no-hero-php {
+	.uw-body {
+		.uw-site-title {
+			color: @darkgray
+		}
+	}
+}
+
+// No site title
+
+.page-template-templatestemplate-no-title-php {
+	.uw-body {
+		.uw-site-title {
+			display: none;
+		}
+		&.container {
+			margin-top: 30px;
+		}
+	}
+	ul.uw-sidebar-menu {
+		margin-top: -20px;
+	}
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 767px) {
+	.uw-hero-image {
+		display: none;
+	}
+    .udub-slant {
+        margin: 10px 0 15px 0;
+        span {
+            height: 8px;
+            margin: 0 0 0 -145px;
+        }
+    }
+}

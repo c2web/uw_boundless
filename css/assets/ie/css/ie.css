@@ -1,0 +1,50 @@
+.fui-radio-unchecked:before,
+.fui-radio-checked:before {
+  background: url(../img/uw-sprite.png) no-repeat 0 0 rgba(0, 0, 0, 0);
+}
+
+
+.uw-thinstrip .uw-patch {
+	background-image: url(../img/uw-sprite.png);
+}
+
+.uw-thinstrip .uw-wordmark {
+	background-image: url(../img/uw-sprite.png);
+}
+
+.uw-thinstrip ul.uw-thin-links li.uw-search button {
+	background-image: url(../img/mag.png);
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.uw-thinstrip ul.uw-thin-links li.uw-quicklinks button {
+	background-image: url(../img/quick.png);
+	background-position: right 0;
+	background-repeat: no-repeat;
+}
+
+.uw-thinstrip ul.uw-thin-links li.uw-quicklinks button:before {
+	display: none;
+}
+
+.uw-thinstrip ul.uw-thin-links li a:after,
+.uw-thinstrip ul.uw-thin-links li button:after {
+	background-image: url(../img/uw-sprite.png);
+}
+
+.uw-search-bar-container a.search {
+	background-image: url(../img/search.png);
+}
+#uw-container #quicklinks ul#big-links li span {
+	background-image: url(../img/uw-sprite.png);
+}
+body.search-open #uw-container {
+    margin-top: 192px;
+}
+body.search-open #uwsearcharea .no-height{
+    top: 0px;
+}
+#uw-container.open div#uw-container-inner{
+    left: -270px;
+}
