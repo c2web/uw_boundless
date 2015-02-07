@@ -51,20 +51,20 @@ function uw_boundless_preprocess_html(&$variables) {
  */
 function uw_boundless_preprocess_page(&$variables) {
 
-    // reset content column class from bootstrap's default col-sm-9 to col-md-8.
-    // the column class for uw-sidebar is hard-coded in page.tpl.php 
-    if (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
-        $variables['content_column_class'] = ' class="col-md-8"';
-    }
-    else {
-        $variables['content_column_class'] = ' class="col-sm-12"';
-    }
-
     //new variable for the sidebar menu
     $variables['uw_sidebar_menu'] = _uw_boundless_uw_sidebar_menu();
     
     // new variable to display copyright
     $variables['uw_copyright_year'] = _uw_boundless_copyrightyear();
+    
+    // reset content column class from bootstrap's default col-sm-9 to col-md-8.
+    // the column class for uw-sidebar is hard-coded in page.tpl.php 
+    if ($variables['uw_sidebar_menu'] || !empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
+        $variables['content_column_class'] = ' class="col-md-8"';
+    }
+    else {
+        $variables['content_column_class'] = ' class="col-sm-12"';
+    }
 }
 
 /**
