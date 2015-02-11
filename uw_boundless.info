@@ -57,7 +57,7 @@ scripts[] = 'bootstrap/js/transition.js'
 : ;; UW utility scripts
 ; ;;;;;;;;;;;;;;;;;;;;;
 
-scripts[] = 'js/uw.bind.js'
+scripts[] = 'js/function.bind.js'
 scripts[] = 'js/uw.quicklinks.js'
 
 ; ;;;;;;;;;;;;;;;;;;;;;
