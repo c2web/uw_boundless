@@ -54,10 +54,17 @@ scripts[] = 'bootstrap/js/tab.js'
 scripts[] = 'bootstrap/js/transition.js'
 
 ; ;;;;;;;;;;;;;;;;;;;;;
+: ;; UW utility scripts
+; ;;;;;;;;;;;;;;;;;;;;;
+
+scripts[] = 'js/function.bind.js'
+scripts[] = 'js/uw.quicklinks.js'
+scripts[] = 'js/dropdowns.js'
+
+; ;;;;;;;;;;;;;;;;;;;;;
 ; ;; theme script
 ; ;;;;;;;;;;;;;;;;;;;;;
 
-scripts[] = 'js/dropdowns.js'
 scripts[] = 'js/script.js'
 
 ; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.

@@ -28,18 +28,7 @@
         /**
          * this displays/hides the quicklinks on a click event
          */
-        $("button.uw-quicklinks").click(function() {
-            $("#uw-container").toggleClass("open");
-            $("#quicklinks").toggleClass("open", function(){
-                if ($("#quicklinks").hasClass("open")) {
-                    $("#uw-container").attr("aria-expanded", true);
-                    $("#quicklinks a").attr("tabindex", 0);
-                } else {
-                    $("#uw-container").attr("aria-expanded", false);
-                    $("#quicklinks a").attr("tabindex", -1);
-                }
-            });
-        });
+        UW.quicklinks.initialize();
 
         /**
          * this displays/hides the mobile-menu on a click event
@@ -53,7 +42,7 @@
         /**
         * Setup the keyboard navigation for the drop down menu
         */
-        $('.dawgdrops-nav').dawgDrops()
+        $('.dawgdrops-nav').dawgDrops();
 
     });//document.ready
 

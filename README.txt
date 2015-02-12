@@ -83,4 +83,4 @@ Make sure that none of the regions have classes specified. All regions should di
 
 12. jQuery update
 Navigate to Administration > Configuration > Development > jQuery update
-Make sure the "Default jQuery Version" is at least 1.7
+Make sure the "Default jQuery Version" is at least 1.9
