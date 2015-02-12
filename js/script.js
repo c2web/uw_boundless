@@ -12,11 +12,11 @@
 // - http://drupal.org/node/1446420
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
 (function ($, Drupal, window, document, undefined) {
-
+        
     // The document ready event executes when the HTML-Document is loaded
     // and the DOM is ready.
-    jQuery(document).ready(function($) {
-
+    jQuery(document).ready(function($) { 
+        
         /**
          * this displays/hides the search area on a click event
          */
@@ -24,7 +24,7 @@
             $("body").toggleClass("search-open");
             $("#uwsearcharea").toggleClass("open");
         });
-
+        
         /**
          * this displays/hides the quicklinks on a click event
          */
@@ -49,24 +49,19 @@
                 // Animation complete.
             });
         });
-
-        /**
-        * Setup the keyboard navigation for the drop down menu
-        */
-        $('.dawgdrops-nav').dawgDrops()
-
+        
     });//document.ready
-
-
+    
+    
     // The window load event executes after the document ready event,
     // when the complete page is fully loaded.
     jQuery(window).load(function() {
-
+        
         /**
          * reposition the alert banner in the DOM
          */
         $("#uwalert-alert-message").insertAfter("header.uw-thinstrip");
-
+        
     });//window.load
-
+    
 })(jQuery, Drupal, this, this.document);
