@@ -27,7 +27,7 @@ Some instructions may not apply exactly to existing Drupal 7 installations.
 Navigate to Administration > Appearance and make sure that the UW Boundless theme is the enabled and default theme.
 
 3. Bootstrap CDN
-The theme uses local bootstrap files. Make sure that BootstrapCDN is disabled.
+The theme uses local bootstrap files (v3.3.1). Make sure that BootstrapCDN is disabled.
 Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
 In the "Bootstrap Settings" section, on the "Advanced" tab:
 Expand "BOOTSTRAPCDN"
@@ -83,4 +83,4 @@ Make sure that none of the regions have classes specified. All regions should di
 
 12. jQuery update
 Navigate to Administration > Configuration > Development > jQuery update
-Make sure the "Default jQuery Version" is at least 1.9
+Set the "Default jQuery Version" to 1.8

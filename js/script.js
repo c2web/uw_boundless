@@ -18,15 +18,12 @@
     jQuery(document).ready(function($) {
 
         /**
-         * this displays/hides the search area on a click event
+         * this displays/hides the search area
          */
-        $("button.uw-search").click(function() {
-            $("body").toggleClass("search-open");
-            $("#uwsearcharea").toggleClass("open");
-        });
+        UW.search.initialize();
 
         /**
-         * this displays/hides the quicklinks on a click event
+         * this displays/hides the quicklinks
          */
         UW.quicklinks.initialize();
 

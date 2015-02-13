@@ -78,7 +78,7 @@
  * @ingroup themeable
  */
 ?>
-<div id="uwsearcharea" aria-hidden="true" class="uw-search-bar-container" tabindex="-1">
+<div id="uwsearcharea" aria-hidden="true" class="uw-search-bar-container" tabindex="-1" role="search">
     <div class="container no-height">
         <div class="center-block uw-search-wrapper">
             <?php print render($page['search']); ?>
