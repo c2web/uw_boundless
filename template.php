@@ -253,6 +253,11 @@ function _uw_boundless_copyrightyear() {
  * @todo Refactor
  */
 function _uw_boundless_uw_sidebar_menu() {
+    
+    // check the global theme setting
+    if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
+        return FALSE;
+    }
           
     // get some data
     $current_path = current_path();

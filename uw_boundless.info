@@ -68,6 +68,12 @@ scripts[] = 'js/dropdowns.js'
 
 scripts[] = 'js/script.js'
 
+; ;;;;;;;;;;;;;;;;;;;;;
+; ;; theme settings
+; ;;;;;;;;;;;;;;;;;;;;;
+
+settings[uw_boundless_sidebar_menu_visibility] = 1
+
 ; ; Disable BootstrapCDN if using Bootstrap source files in your sub-theme.
 ; settings[bootstrap_cdn] = ''
 
