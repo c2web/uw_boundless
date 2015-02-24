@@ -56,7 +56,7 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
      $form['uw_boundless_hero_image']['front_page']['settings']['uw_boundless_hero_image_front_path'] = array(
         '#type' => 'textfield',
         '#title' => t('Path to custom hero-image'),
-        '#description' => t('The path to the file you would like to use as your hero-image file instead of the default hero-image. e.g. "'.variable_get('file_public_path', conf_path() . '/files/myfilename.png').'". Suggested dimensions: 1600 x 622'),
+        '#description' => t('The path to the file you would like to use as your hero-image file instead of the default hero-image. e.g. Suggested dimensions: 1600 x 622'),
         '#default_value' => theme_get_setting('uw_boundless_hero_image_front_path'),
     );
     $form['uw_boundless_hero_image']['front_page']['settings']['hero_image_front_upload'] = array(
@@ -92,7 +92,7 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
      $form['uw_boundless_hero_image']['other_page']['settings']['uw_boundless_hero_image_path'] = array(
         '#type' => 'textfield',
         '#title' => t('Path to custom hero-image'),
-        '#description' => t('The path to the file you would like to use as your header file instead of the default hero-image. e.g. "'.variable_get('file_public_path', conf_path() . '/files/myfilename.png').'". Suggested dimensions: 1600 x 226'),
+        '#description' => t('The path to the file you would like to use as your header file instead of the default hero-image. Suggested dimensions: 1600 x 226'),
         '#default_value' => theme_get_setting('uw_boundless_hero_image_path'),
     );
     $form['uw_boundless_hero_image']['other_page']['settings']['hero_image_upload'] = array(
