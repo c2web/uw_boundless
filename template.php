@@ -50,7 +50,18 @@ function uw_boundless_preprocess_html(&$variables) {
  * @param type &$variables
  */
 function uw_boundless_preprocess_page(&$variables) {
-
+    //hero-image front page
+    $variables['uw_hero_image_front_path'] = 
+            (theme_get_setting('uw_boundless_hero_image_front_default')) 
+            ? file_create_url(theme_get_setting('uw_boundless_hero_image_front_default_path')) 
+            : file_create_url(theme_get_setting('uw_boundless_hero_image_front_path'));
+    
+    // hero-image other pages
+    $variables['uw_hero_image_path'] = 
+            (theme_get_setting('uw_boundless_hero_image_default'))
+            ? file_create_url(theme_get_setting('uw_boundless_hero_image_default_path'))
+            : file_create_url(theme_get_setting('uw_boundless_hero_image_path'));
+        
     //new variable for the sidebar menu
     $variables['uw_sidebar_menu'] = _uw_boundless_uw_sidebar_menu();
     
@@ -254,7 +265,7 @@ function _uw_boundless_copyrightyear() {
  */
 function _uw_boundless_uw_sidebar_menu() {
     
-    // check the global theme setting
+    // check the theme setting for visibility
     if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
         return FALSE;
     }

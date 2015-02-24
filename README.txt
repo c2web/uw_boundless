@@ -84,3 +84,16 @@ Make sure that none of the regions have classes specified. All regions should di
 12. jQuery update
 Navigate to Administration > Configuration > Development > jQuery update
 Set the "Default jQuery Version" to 1.8
+
+
+UW Boundless Theme Settings
+---------------
+A custom theme settings section is introduced.
+Navigate to Administration > Appearance and click the settings of the UW Boundless theme.
+The "UW Boundless Theme Settings" section contains theme-specific configuration options.
+
+1. Hero Image
+Customize the path for the front page image and the image used on all other pages.
+
+2. Sidebar menu
+Contains a setting to manage the visibility of the sidebar menu.

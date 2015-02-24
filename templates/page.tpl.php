@@ -28,6 +28,8 @@
  *   in theme settings.
  *
  * UW Boundless:
+ * - $uw_hero_image_front_path (string): path to hero-image for the frontpage
+ * - $uw_hero_image_path (string): path to hero-image on all other pages
  * - $uw_sidebar_menu (HTML content): content containing the sidebar menu
  * - $uw_copyright_year (HTML content, in uw-footer.inc)
  * 
@@ -103,7 +105,7 @@
         </nav><!-- /#dawgdrops -->
         
         <?php if ($is_front): ?>
-            <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w.jpg');">
+            <div class="uw-hero-image" style="background-image:url('<?php print $uw_hero_image_front_path; ?>');">
                 <?php if (!empty($site_name)): ?>
                     <div class="container">
                         <h1><?php print $site_name; ?></h1>
@@ -115,7 +117,7 @@
                 <?php endif; ?>   
             </div>
         <?php else: ?>   
-            <div class="uw-hero-image" style="background-image:url('http://www.washington.edu/brand/files/2014/09/w3.jpg');"></div>
+            <div class="uw-hero-image" style="background-image:url('<?php print $uw_hero_image_path; ?>');"></div>
         <?php endif; ?>   
         <!-- /#uw-hero-image -->
          
