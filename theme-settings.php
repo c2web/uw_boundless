@@ -17,6 +17,17 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
         return;
     }
     
+    // array of UW colors for select options
+    $_colors = array(
+        '#4b2e83' => t('Purple'),
+        '#b7a57a' => t('Gold'),
+        '#85754d' => t('Metallic Gold'),
+        '#d9d9d9' => t('Light Grey'),
+        '#444444' => t('Dark Grey'),
+        '#000000' => t('Black'),
+        '#ffffff' => t('White'),
+    );
+    
     // UW Boundless Theme Settings 
     $form['uw_boundless'] = array(
         '#type' => 'vertical_tabs',
@@ -37,14 +48,14 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
     );
-     $form['uw_boundless_hero_image']['front_page']['uw_boundless_hero_image_front_default'] = array(
+    $form['uw_boundless_hero_image']['front_page']['uw_boundless_hero_image_front_default'] = array(
         '#type' => 'checkbox',
         '#title' => t('Use the default hero-image'),
         '#default_value' => theme_get_setting('uw_boundless_hero_image_front_default'),
         '#tree' => FALSE,
         '#description' => t('Check here if you want the theme to use the hero-image supplied with it.')
     );
-     $form['uw_boundless_hero_image']['front_page']['settings'] = array(
+    $form['uw_boundless_hero_image']['front_page']['settings'] = array(
         '#type' => 'container',
         '#states' => array(
         // Hide the header settings when using the default header.
@@ -53,7 +64,7 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
             ),
         ),
     );
-     $form['uw_boundless_hero_image']['front_page']['settings']['uw_boundless_hero_image_front_path'] = array(
+    $form['uw_boundless_hero_image']['front_page']['settings']['uw_boundless_hero_image_front_path'] = array(
         '#type' => 'textfield',
         '#title' => t('Path to custom hero-image'),
         '#description' => t('The path to the file you would like to use as your hero-image file instead of the default hero-image. Suggested dimensions: 1600 x 622'),
@@ -73,14 +84,14 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
         '#collapsible' => TRUE,
         '#collapsed' => FALSE,
     );
-         $form['uw_boundless_hero_image']['other_page']['uw_boundless_hero_image_default'] = array(
+    $form['uw_boundless_hero_image']['other_page']['uw_boundless_hero_image_default'] = array(
         '#type' => 'checkbox',
         '#title' => t('Use the default hero-image'),
         '#default_value' => theme_get_setting('uw_boundless_hero_image_default'),
         '#tree' => FALSE,
         '#description' => t('Check here if you want the theme to use the hero-image supplied with it.')
     );
-     $form['uw_boundless_hero_image']['other_page']['settings'] = array(
+    $form['uw_boundless_hero_image']['other_page']['settings'] = array(
         '#type' => 'container',
         '#states' => array(
         // Hide the header settings when using the default header.
@@ -89,7 +100,7 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
             ),
         ),
     );
-     $form['uw_boundless_hero_image']['other_page']['settings']['uw_boundless_hero_image_path'] = array(
+    $form['uw_boundless_hero_image']['other_page']['settings']['uw_boundless_hero_image_path'] = array(
         '#type' => 'textfield',
         '#title' => t('Path to custom hero-image'),
         '#description' => t('The path to the file you would like to use as your header file instead of the default hero-image. Suggested dimensions: 1600 x 226'),
@@ -100,6 +111,35 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
         '#title' => t('Upload hero-image'),
         '#maxlength' => 40,
         '#description' => t("If you don't have direct file access to the server, use this field to upload your hero-image. The path will be set automatically.")
+    );
+    
+    // Front page 
+    $form['uw_boundless_front_page'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Front Page'),
+        '#group' => 'uw_boundless',
+        '#description' => t('Set the color display of certain front page elements. For reference, see:') . ' ' . l(t('UW brand color palette'), 'http://www.washington.edu/brand/primary-color-palette/', array('attributes' => array('target' => '_blank'))),
+    );
+    // Front page title color
+    $form['uw_boundless_front_page']['uw_boundless_front_page_title_color']= array(
+        '#type' => 'select',
+        '#title' => t('Site name color'),
+        '#default_value' => theme_get_setting('uw_boundless_front_page_title_color'),
+        '#options' => $_colors,
+    );
+    // Front page slant color
+    $form['uw_boundless_front_page']['uw_boundless_front_page_slant_color']= array(
+        '#type' => 'select',
+        '#title' => t('slant color'),
+        '#default_value' => theme_get_setting('uw_boundless_front_page_slant_color'),
+        '#options' => $_colors,
+    );
+    // Front page slogan color
+    $form['uw_boundless_front_page']['uw_boundless_front_page_slogan_color']= array(
+        '#type' => 'select',
+        '#title' => t('Site slogan color'),
+        '#default_value' => theme_get_setting('uw_boundless_front_page_slogan_color'),
+        '#options' => $_colors,
     );
     
     // Sidebar menu 

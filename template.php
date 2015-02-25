@@ -6,6 +6,19 @@
  */
 
 /**
+ * Uw colors
+ */
+abstract class UW_Color {
+    const Purple = '#4b2e83';
+    const Gold = '#b7a57a';
+    const Metallic_Gold = '#85754d';
+    const Light_Grey = '#d9d9d9';
+    const Dark_Grey = '#444444';
+    const Black = '#000000';
+    const White = '#ffffff';
+}
+    
+/**
  * Preprocess variables for html.tpl.php
  *
  * Implements template_preprocess_html(&$variables)
@@ -61,7 +74,16 @@ function uw_boundless_preprocess_page(&$variables) {
             (theme_get_setting('uw_boundless_hero_image_default'))
             ? file_create_url(theme_get_setting('uw_boundless_hero_image_default_path'))
             : file_create_url(theme_get_setting('uw_boundless_hero_image_path'));
-        
+    
+    // front page title color
+    $variables['uw_front_title_color'] = theme_get_setting('uw_boundless_front_page_title_color');
+    $variables['uw_front_title_text_shadow'] = _uw_boundless_get_text_shadow($variables['uw_front_title_color']);
+    // front page slant color
+    $variables['uw_front_slant_color'] = theme_get_setting('uw_boundless_front_page_slant_color');
+    // front page slogan color
+    $variables['uw_front_slogan_color'] = theme_get_setting('uw_boundless_front_page_slogan_color');
+    $variables['uw_front_slogan_text_shadow'] = _uw_boundless_get_text_shadow($variables['uw_front_slogan_color']);
+    
     //new variable for the sidebar menu
     $variables['uw_sidebar_menu'] = _uw_boundless_uw_sidebar_menu();
     
@@ -393,7 +415,42 @@ function _uw_boundless_uw_sidebar_menu() {
     return ($output) ? $output_menu : $output;
 }
 
-
+/**
+ * Local function
+ * Gets the text-shadow settting for the provided color.
+ * 
+ * @param string $color string containing a hex value.
+ * @return string   the theme setting value for uw_boundless_text_shadow_black or uw_boundless_text_shadow_white.
+ */
+function _uw_boundless_get_text_shadow($color) {
+    switch ($color) {
+    case UW_Color::White:
+        $retval = theme_get_setting('uw_boundless_text_shadow_black');
+        break;
+    case UW_Color::Light_Grey:
+        $retval = theme_get_setting('uw_boundless_text_shadow_black');
+        break;
+    case UW_Color::Gold:
+        $retval = theme_get_setting('uw_boundless_text_shadow_black');
+        break;
+    case UW_Color::Purple:
+        $retval = theme_get_setting('uw_boundless_text_shadow_white');
+        break;
+    case UW_Color::Metallic_Gold:
+        $retval = theme_get_setting('uw_boundless_text_shadow_white');
+        break;
+    case UW_Color::Dark_Grey:
+        $retval = theme_get_setting('uw_boundless_text_shadow_white');
+        break;
+    case UW_Color::Black:
+        $retval = theme_get_setting('uw_boundless_text_shadow_white');
+        break;
+    default:
+        $retval = theme_get_setting('uw_boundless_text_shadow_black');
+        break;
+    }
+    return $retval;
+}
 
 /**
  * Development function.

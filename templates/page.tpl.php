@@ -28,10 +28,15 @@
  *   in theme settings.
  *
  * UW Boundless:
- * - $uw_hero_image_front_path (string): path to hero-image for the frontpage
- * - $uw_hero_image_path (string): path to hero-image on all other pages
- * - $uw_sidebar_menu (HTML content): content containing the sidebar menu
- * - $uw_copyright_year (HTML content, in uw-footer.inc)
+ * - $uw_hero_image_front_path (string): style setting, path to hero-image for the frontpage.
+ * - $uw_hero_image_path (string): style setting, path to hero-image on all other pages.
+ * - $uw_front_title_color (string): style setting, value for the color of the title.
+ * - $uw_front_title_text_shadow (string): style setting, value for the text-shadow of the title.
+ * - $uw_front_slant_color (string): style setting, value for the background-color of the "slant" span.
+ * - $uw_front_slogan_color (string): style setting, value for the color of the slogan.
+ * - $uw_front_slogan_text_shadow (string): style setting, value for the text-shadow of the slogan.
+ * - $uw_sidebar_menu (HTML content): content containing the sidebar menu.
+ * - $uw_copyright_year (HTML content, in uw-footer.inc).
  * 
  * Navigation:
  * - $main_menu (array): An array containing the Main menu links for the
@@ -108,10 +113,10 @@
             <div class="uw-hero-image" style="background-image:url('<?php print $uw_hero_image_front_path; ?>');">
                 <?php if (!empty($site_name)): ?>
                     <div class="container">
-                        <h1><?php print $site_name; ?></h1>
-                        <div class="udub-slant"><span></span></div>
+                        <h1 style="color:<?php print $uw_front_title_color; ?>;text-shadow:<?php print $uw_front_title_text_shadow; ?>;"><?php print $site_name; ?></h1>
+                        <div class="udub-slant"><span style="background-color:<?php print $uw_front_slant_color; ?>;"></span></div>
                         <?php if (!empty($site_slogan)): ?>
-                            <p><?php print $site_slogan; ?></p>
+                            <p style="color:<?php print $uw_front_slogan_color; ?>;text-shadow:<?php print $uw_front_slogan_text_shadow; ?>;"><?php print $site_slogan; ?></p>
                         <?php endif; ?>   
                     </div>
                 <?php endif; ?>   

@@ -95,5 +95,8 @@ The "UW Boundless Theme Settings" section contains theme-specific configuration 
 1. Hero Image
 Customize the path for the front page image and the image used on all other pages.
 
-2. Sidebar menu
+2. Front page
+Contains color settings for elements on the front page.
+
+3. Sidebar menu
 Contains a setting to manage the visibility of the sidebar menu.
