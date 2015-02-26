@@ -10196,14 +10196,14 @@ label.screen-reader {
   margin-right: -15px;
   margin-left: -15px;
 }
-.front nav#mobile-relative .dawgdrops-menu {
+nav#mobile-relative .navbar-nav .dawgdrops-menu {
   display: none;
 }
-.front nav#mobile-relative .dawgdrops-item a {
+nav#mobile-relative .navbar-nav .dawgdrops-item a {
   font-weight: 400;
   text-transform: none;
 }
-.front nav#mobile-relative .dawgdrops-item a:after {
+nav#mobile-relative .navbar-nav .dawgdrops-item a:after {
   background: none;
 }
 @media only screen and (max-width: 768px) {

@@ -150,11 +150,11 @@
                   <h1 class="page-header"><?php print $title; ?></h1>
                 <?php endif; ?>
                 
-                <?php if ((!empty($page['navigation']['system_main-menu'])) && ($is_front || $uw_sidebar_menu)): ?>  
+                <?php if ((!empty($page['navigation']['system_main-menu']))): ?>  
                   <nav id="mobile-relative" role="navigation" aria-label="relative">
                       <button class="uw-mobile-menu-toggle">Menu</button>
                       <ul class="uw-mobile-menu first-level">
-                          <?php if ($is_front && !empty($primary_nav)): ?>
+                          <?php if (($is_front || (!$is_front && !$uw_sidebar_menu)) && !empty($primary_nav)): ?>
                             <li class="pagenav">
                                 <?php print l("Home", $GLOBALS['base_url'], array('attributes' => array('title' => 'Home', 'class' => array('homelink')))); ?>
                                 <?php print render($primary_nav); ?>

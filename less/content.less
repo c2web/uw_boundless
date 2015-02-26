@@ -86,12 +86,15 @@
     nav#mobile-relative {
         margin-right: -15px;
         margin-left: -15px;
+    }
+}
 
-        // hide the submenu dropdowns on the frontpage mobile-menu
+nav#mobile-relative {
+    // hide the submenu dropdowns on the rendering of $primary_nav 
+    .navbar-nav {
         .dawgdrops-menu {
             display: none;
         }
-
         .dawgdrops-item a {
             font-weight: 400;
             text-transform: none;
@@ -101,6 +104,7 @@
             }
         }
     }
+
 }
 
 @media only screen and (max-width: 768px) {

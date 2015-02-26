@@ -286,7 +286,7 @@ function _uw_boundless_copyrightyear() {
  * @todo Refactor
  */
 function _uw_boundless_uw_sidebar_menu() {
-    
+
     // check the theme setting for visibility
     if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
         return FALSE;
@@ -300,7 +300,7 @@ function _uw_boundless_uw_sidebar_menu() {
     
     // get the current menu link
     $current_link = menu_link_get_preferred($current_path, 'main-menu');
-   
+    
     $output = TRUE;
     $output_menu = '';
 
@@ -459,8 +459,9 @@ function _uw_boundless_get_text_shadow($color) {
  * 
  * @param type $vars
  */
-//function _uw_boundless_dump($vars) {
-//    //$output = '<pre class="uw_boundless_dump">'.var_export($vars, TRUE).'</pre>';
-//    $output = '<pre class="uw_boundless_dump">'.print_r($vars, TRUE).'</pre>';
-//    echo $output;
-//}
+function _uw_boundless_dump($vars, $type = 'status') {
+    $output = basename(__FILE__, '.php');
+    $output .= '<pre class="uw_boundless_dump">'.var_export($vars, TRUE).'</pre>';
+    //$output = '<pre class="uw_boundless_dump">'.print_r($vars, TRUE).'</pre>';
+    drupal_set_message(t($output), $type);
+}
