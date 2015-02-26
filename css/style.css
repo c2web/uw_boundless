@@ -10192,10 +10192,6 @@ label.screen-reader {
     padding-top: 30px;
   }
 }
-.front nav#mobile-relative {
-  margin-right: -15px;
-  margin-left: -15px;
-}
 nav#mobile-relative .navbar-nav .dawgdrops-menu {
   display: none;
 }
@@ -10205,6 +10201,13 @@ nav#mobile-relative .navbar-nav .dawgdrops-item a {
 }
 nav#mobile-relative .navbar-nav .dawgdrops-item a:after {
   background: none;
+}
+.front nav#mobile-relative {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.not-front nav#mobile-relative .navbar-nav {
+  width: inherit;
 }
 @media only screen and (max-width: 768px) {
   nav#mobile-relative button.uw-mobile-menu-toggle {

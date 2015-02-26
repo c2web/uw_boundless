@@ -81,14 +81,6 @@
 
 // Mobile menu
 // -------------------------
-// frontpage mobile-menu nav container
-.front {
-    nav#mobile-relative {
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-}
-
 nav#mobile-relative {
     // hide the submenu dropdowns on the rendering of $primary_nav 
     .navbar-nav {
@@ -105,6 +97,22 @@ nav#mobile-relative {
         }
     }
 
+}
+
+// frontpage mobile-menu nav container
+.front {
+    nav#mobile-relative {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+}
+
+.not-front {
+    nav#mobile-relative {
+        .navbar-nav {
+            width: inherit;
+        }
+    }
 }
 
 @media only screen and (max-width: 768px) {
