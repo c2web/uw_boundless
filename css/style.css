@@ -10173,6 +10173,10 @@ label.screen-reader {
   }
 }
 @media only screen and (min-width: 768px) {
+  .front .uw-body > .row {
+    margin-top: -30px;
+    background-color: #fff;
+  }
   .front .uw-body .uw-site-title {
     display: none;
   }
