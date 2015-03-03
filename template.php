@@ -287,7 +287,7 @@ function _uw_boundless_copyrightyear() {
  */
 function _uw_boundless_uw_sidebar_menu() {
     global $theme;
-
+    
     try {
         // check the theme setting for visibility
         if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
@@ -299,6 +299,13 @@ function _uw_boundless_uw_sidebar_menu() {
         $active_trail = menu_get_active_trail();
         $current_depth = count($active_trail);
         $active_trail_key =  $current_depth - 1;
+                
+        // throw exception if trail is not main-menu
+        if ($active_trail_key > 0) {
+            if (!$active_trail[1]['menu_name'] == 'main-menu') {
+                throw new Exception('I\'m sorry, there\'s an issue with the sidebar menu. I can\'t build it. The active trail of this page does not appear to be the main-menu. It looks like it\'s using "'.$active_trail[1]['menu_name'].'".');
+            }
+        } 
 
         // get the current menu link
         $current_link = menu_link_get_preferred($current_path, 'main-menu');
@@ -327,7 +334,7 @@ function _uw_boundless_uw_sidebar_menu() {
                   );  
                 // get the children
                 $children = menu_build_tree($current_link['menu_name'], $parameters);
-
+                                
                 $output_menu .= '<ul class="children">';
                 foreach ($children as $child) {
                     if (!$child['link']['hidden']) {
@@ -347,9 +354,24 @@ function _uw_boundless_uw_sidebar_menu() {
 
                 // get active parent by moving one up the trail
                 $active_parent = ($active_trail[$active_trail_key - 1]); 
+                // create flag if parent points home
+                $active_parent_is_front = ($active_parent['link_path'] === '<front>') ? TRUE : FALSE;
+
                 // get the parent menu link
                 $parent_link = menu_link_get_preferred($active_parent['link_path'], 'main-menu');
-
+                // however, if active parent points home, create a new array 
+                // using front as path
+                if ($active_parent_is_front){
+                   $parent_link = array(
+                       'link_title' => $active_parent['link_title'],
+                       'link_path' => '<front>',
+                       'plid' => $active_parent['plid'],
+                       'mlid' => $active_parent['mlid'],
+                       'menu_name' => $active_parent['menu_name'],
+                       'depth' => $active_parent['depth'],
+                   ); 
+                }
+                
                 $output_menu .= '<li class="page_item page_item_has_children current_page_ancestor current_page_parent">';
                 $output_menu .= l($parent_link['link_title'], $parent_link['link_path']);
 
@@ -363,7 +385,7 @@ function _uw_boundless_uw_sidebar_menu() {
                   );  
                 // get the children
                 $children = menu_build_tree($parent_link['menu_name'], $parameters);
-
+     
                 $output_menu .= '<ul class="children">';
                 foreach ($children as $child) {  
                     if (!$child['link']['hidden']) {
@@ -412,7 +434,7 @@ function _uw_boundless_uw_sidebar_menu() {
         }
 
         $output_menu .= '</ul>';
-
+                
         return ($output) ? $output_menu : $output;
     
     } catch (Exception $exc) {
@@ -420,6 +442,7 @@ function _uw_boundless_uw_sidebar_menu() {
         drupal_set_message($exc->getMessage(), 'error');
         // write to log
         watchdog_exception($theme, $exc);
+        return FALSE;
     }
 }
 

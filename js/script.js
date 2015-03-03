@@ -33,6 +33,8 @@
         $("button.uw-mobile-menu-toggle").click(function(event) {
             $("ul.uw-mobile-menu").toggle(200, "swing", function() {
                 // Animation complete.
+            }, function() {
+                // Animation complete.
             });
         });
 
@@ -40,6 +42,20 @@
         * Setup the keyboard navigation for the drop down menu
         */
         $('.dawgdrops-nav').dawgDrops();
+        
+        /**
+         * add second level menu links to toggle second level menu items.
+         * only when $primary_nav is rendered as mobile-nav
+         */
+        $('#mobile-relative .navbar-nav > li.dawgdrops-item.expanded').prepend('<a class="dawgdrops-item-menu-link">menu</a>');
+        $(".dawgdrops-item-menu-link").click(function(event) {
+            // targets the dawgdrops-menu submenu in this dawgdrops-item
+            $(this).next().next(".dawgdrops-menu").toggle(200, "swing", function() {
+                // Animation complete.
+            }, function() {
+                // Animation complete.
+            });
+        });
 
     });//document.ready
 

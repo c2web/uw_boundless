@@ -86,13 +86,41 @@ nav#mobile-relative {
     .navbar-nav {
         .dawgdrops-menu {
             display: none;
+            
+            position: relative;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            top: 0;
+            border-top: none;
+            li {
+                background-color: inherit;
+                a {
+                    background-color: inherit;
+                    color: #5a5a5a;
+                    border-left: none;
+                    padding-left: 35px;
+                    padding-top: 10;
+                    padding-bottom:10;
+                }  
+            }
         }
-        .dawgdrops-item a {
-            font-weight: 400;
-            text-transform: none;
-
-            &:after {
-                background: none;
+        .dawgdrops-item {
+            a {
+                font-weight: 400;
+                text-transform: none;
+                &:after {
+                    background: none;
+                }
+            }
+            .dawgdrops-item-menu-link {
+                display: inline-block;
+                float: right;
+                z-index: 1;
+                font-family: "Encode Sans Compressed", sans-serif;
+                font-size: 60%;
+                cursor: pointer;
+                text-transform: uppercase;
+                background: url(assets/svg/slash.svg) no-repeat 10px 17px;
             }
         }
     }
