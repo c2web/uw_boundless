@@ -44,9 +44,9 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
     // Hero image settings for the image on the default front page
     $form['uw_boundless_hero_image']['front_page'] = array(
         '#type' => 'fieldset',
-        '#title' => t('The hero-image used on the front page'),
+        '#title' => t('front page hero-image'),
         '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#collapsed' => TRUE,
     );
     $form['uw_boundless_hero_image']['front_page']['uw_boundless_hero_image_front_default'] = array(
         '#type' => 'checkbox',
@@ -80,9 +80,9 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
     // Hero image settings for the image used on other pages
     $form['uw_boundless_hero_image']['other_page'] = array(
         '#type' => 'fieldset',
-        '#title' => t('The hero-image used on all other pages'),
+        '#title' => t('not front page hero-image '),
         '#collapsible' => TRUE,
-        '#collapsed' => FALSE,
+        '#collapsed' => TRUE,
     );
     $form['uw_boundless_hero_image']['other_page']['uw_boundless_hero_image_default'] = array(
         '#type' => 'checkbox',
@@ -113,31 +113,37 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
         '#description' => t("If you don't have direct file access to the server, use this field to upload your hero-image. The path will be set automatically.")
     );
     
-    // Front page 
-    $form['uw_boundless_front_page'] = array(
+    // Color settings 
+    $form['uw_boundless_colors'] = array(
         '#type' => 'fieldset',
-        '#title' => t('Front Page'),
+        '#title' => t('Color settings'),
         '#group' => 'uw_boundless',
-        '#description' => t('Set the color display of certain front page elements. For reference, see:') . ' ' . l(t('UW brand color palette'), 'http://www.washington.edu/brand/primary-color-palette/', array('attributes' => array('target' => '_blank'))),
+        '#description' => t('Set the color display of certain page elements. For color references, see:') . ' ' . l(t('UW brand color palette'), 'http://www.washington.edu/brand/primary-color-palette/', array('attributes' => array('target' => '_blank'))),
+    );
+    $form['uw_boundless_colors']['front_page'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('front page elements'),
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
     );
     // Front page title color
-    $form['uw_boundless_front_page']['uw_boundless_front_page_title_color']= array(
+    $form['uw_boundless_colors']['front_page']['uw_boundless_front_page_title_color']= array(
         '#type' => 'select',
-        '#title' => t('Site name color'),
+        '#title' => t('Site name'),
         '#default_value' => theme_get_setting('uw_boundless_front_page_title_color'),
         '#options' => $_colors,
     );
     // Front page slant color
-    $form['uw_boundless_front_page']['uw_boundless_front_page_slant_color']= array(
+    $form['uw_boundless_colors']['front_page']['uw_boundless_front_page_slant_color']= array(
         '#type' => 'select',
-        '#title' => t('slant color'),
+        '#title' => t('slant'),
         '#default_value' => theme_get_setting('uw_boundless_front_page_slant_color'),
         '#options' => $_colors,
     );
     // Front page slogan color
-    $form['uw_boundless_front_page']['uw_boundless_front_page_slogan_color']= array(
+    $form['uw_boundless_colors']['front_page']['uw_boundless_front_page_slogan_color']= array(
         '#type' => 'select',
-        '#title' => t('Site slogan color'),
+        '#title' => t('Site slogan'),
         '#default_value' => theme_get_setting('uw_boundless_front_page_slogan_color'),
         '#options' => $_colors,
     );
