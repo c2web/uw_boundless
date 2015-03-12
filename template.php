@@ -287,7 +287,7 @@ function _uw_boundless_copyrightyear() {
  */
 function _uw_boundless_uw_sidebar_menu() {
     global $theme;
-    
+
     try {
         // check the theme setting for visibility
         if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
@@ -301,8 +301,9 @@ function _uw_boundless_uw_sidebar_menu() {
         $active_trail_key =  $current_depth - 1;
                 
         // throw exception if trail is not main-menu
+        // and not in case of a path to an admin page
         if ($active_trail_key > 0) {
-            if (!$active_trail[1]['menu_name'] == 'main-menu') {
+            if (!path_is_admin($current_path) && (!$active_trail[1]['menu_name'] == 'main-menu')) {
                 throw new Exception('I\'m sorry, there\'s an issue with the sidebar menu. I can\'t build it. The active trail of this page does not appear to be the main-menu. It looks like it\'s using "'.$active_trail[1]['menu_name'].'".');
             }
         } 

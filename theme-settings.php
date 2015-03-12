@@ -80,7 +80,7 @@ function uw_boundless_form_system_theme_settings_alter(&$form, $form_state, $for
     // Hero image settings for the image used on other pages
     $form['uw_boundless_hero_image']['other_page'] = array(
         '#type' => 'fieldset',
-        '#title' => t('not front page hero-image '),
+        '#title' => t('hero-image '),
         '#collapsible' => TRUE,
         '#collapsed' => TRUE,
     );
