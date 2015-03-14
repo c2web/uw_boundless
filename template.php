@@ -281,170 +281,169 @@ function _uw_boundless_copyrightyear() {
  * 
  * Builds a sidebar menu based on the current path.
  * 
- * @return HTML content
+ * @return HTML content or false
  * 
  * @todo Refactor
  */
 function _uw_boundless_uw_sidebar_menu() {
     global $theme;
 
-    try {
-        // check the theme setting for visibility
-        if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
-            return FALSE;
-        }
-
-        // get some data
-        $current_path = current_path();
-        $active_trail = menu_get_active_trail();
-        $current_depth = count($active_trail);
-        $active_trail_key =  $current_depth - 1;
-                
-        // throw exception if trail is not main-menu
-        // and not in case of a path to an admin page
-        if ($active_trail_key > 0) {
-            if (!path_is_admin($current_path) && (!$active_trail[1]['menu_name'] == 'main-menu')) {
-                throw new Exception('I\'m sorry, there\'s an issue with the sidebar menu. I can\'t build it. The active trail of this page does not appear to be the main-menu. It looks like it\'s using "'.$active_trail[1]['menu_name'].'".');
-            }
-        } 
-
-        // get the current menu link
-        $current_link = menu_link_get_preferred($current_path, 'main-menu');
-
-        $output = TRUE;
-        $output_menu = '';
-
-        $output_menu .= '<ul>';
-
-        // only display sidebar menu when there's a parent and it's not hidden
-        if ((isset($current_link['plid'])) && (!$current_link['hidden'])) {
-            // first level links
-            if (($current_depth == 2) && ($current_link['has_children'])) {
-                // show sub tree of current node            
-
-                $output_menu .= '<li class="page_item page_item_has_children current_page_item">';
-                $output_menu .= l($current_link['link_title'], $current_link['link_path']);
-
-                // parameters to build the tree
-                $parameters = array(
-                    'active_trail' => array($current_link['plid']),
-                    'only_active_trail' => FALSE,
-                    'min_depth' => $current_link['depth']+1,
-                    'max_depth' => $current_link['depth']+1,
-                    'conditions' => array('plid' => $current_link['mlid']),
-                  );  
-                // get the children
-                $children = menu_build_tree($current_link['menu_name'], $parameters);
-                                
-                $output_menu .= '<ul class="children">';
-                foreach ($children as $child) {
-                    if (!$child['link']['hidden']) {
-                        $output_menu .= '<li class="page_item">';
-                        $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
-                        $output_menu .= '</li>';
-                    }
-                }   
-                $output_menu .= '</ul>';
-                $output_menu .= '</li>';
-
-            }
-            // second level links and deeper
-            elseif (($current_depth > 2)) {
-                // show sub tree of parent and 
-                // display current node as current page item
-
-                // get active parent by moving one up the trail
-                $active_parent = ($active_trail[$active_trail_key - 1]); 
-                // create flag if parent points home
-                $active_parent_is_front = ($active_parent['link_path'] === '<front>') ? TRUE : FALSE;
-
-                // get the parent menu link
-                $parent_link = menu_link_get_preferred($active_parent['link_path'], 'main-menu');
-                // however, if active parent points home, create a new array 
-                // using front as path
-                if ($active_parent_is_front){
-                   $parent_link = array(
-                       'link_title' => $active_parent['link_title'],
-                       'link_path' => '<front>',
-                       'plid' => $active_parent['plid'],
-                       'mlid' => $active_parent['mlid'],
-                       'menu_name' => $active_parent['menu_name'],
-                       'depth' => $active_parent['depth'],
-                   ); 
-                }
-                
-                $output_menu .= '<li class="page_item page_item_has_children current_page_ancestor current_page_parent">';
-                $output_menu .= l($parent_link['link_title'], $parent_link['link_path']);
-
-                // parameters to build the tree
-                $parameters = array(
-                    'active_trail' => array($parent_link['plid']),
-                    'only_active_trail' => FALSE,
-                    'min_depth' => $parent_link['depth']+1,
-                    'max_depth' => $parent_link['depth']+1,
-                    'conditions' => array('plid' => $parent_link['mlid']),
-                  );  
-                // get the children
-                $children = menu_build_tree($parent_link['menu_name'], $parameters);
-     
-                $output_menu .= '<ul class="children">';
-                foreach ($children as $child) {  
-                    if (!$child['link']['hidden']) {
-                        if ($current_path == $child['link']['link_path']) {
-                            $output_menu .= '<li class="page_item current_page_item">';
-                            $output_menu .= '<span>'.$child['link']['link_title'].'</span>';
-                            if ($child['link']['has_children']) {
-
-                                // get the grandchildren
-                                // parameters to build the tree
-                                $parameters = array(
-                                    'active_trail' => array($child['link']['plid']),
-                                    'only_active_trail' => FALSE,
-                                    'min_depth' => $child['link']['depth']+1,
-                                    'max_depth' => $child['link']['depth']+1,
-                                    'conditions' => array('plid' => $child['link']['mlid']),
-                                  );  
-                                $grandchildren = menu_build_tree($child['link']['menu_name'], $parameters);
-
-                                $output_menu .= '<ul class="children">';
-                                foreach ($grandchildren as $grandchild) {
-                                    if (!$grandchild['link']['hidden']) {
-                                        $output_menu .= '<li class="page_item">';
-                                        $output_menu .= l($grandchild['link']['link_title'], $grandchild['link']['link_path']);
-                                        $output_menu .= '</li>';
-                                    }
-                                }
-                                $output_menu .= '</ul>';
-                            }
-                        } else {
-                            $output_menu .= '<li class="page_item">';
-                            $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
-                        }
-                        $output_menu .= '</li>';
-                    }
-                }
-                $output_menu .= '</ul>';
-                $output_menu .= '</li>';
-
-            } else {
-                // link has no children
-                $output = FALSE;
-            }        
-        } else {
-            $output = FALSE;
-        }
-
-        $output_menu .= '</ul>';
-                
-        return ($output) ? $output_menu : $output;
-    
-    } catch (Exception $exc) {
-        // display message
-        drupal_set_message($exc->getMessage(), 'error');
-        // write to log
-        watchdog_exception($theme, $exc);
+    // check the theme setting for visibility
+    if (!theme_get_setting('uw_boundless_sidebar_menu_visibility')) {
         return FALSE;
     }
+
+    // get some data
+    $current_path = current_path();
+    $active_trail = menu_get_active_trail();
+    $current_depth = count($active_trail);
+    $active_trail_key =  $current_depth - 1;
+    
+    // no trail, no sidebar menu
+    if ($active_trail_key < 1 ) { return FALSE; }
+    // prevent admin paths from building the sidebar menu
+    if (path_is_admin($current_path)) { return FALSE; }
+    // is menu_name a key in the active trail
+    if (!array_key_exists('menu_name',$active_trail[1])) { return FALSE; }
+    // don't build the sidebar if menu_name is not the main-menu
+    if (!$active_trail[1]['menu_name'] == 'main-menu') {
+        $_message ='I\'m sorry, there\'s an issue with the sidebar menu. I can\'t build it. The active trail of this page does not appear to be the main-menu. It looks like it\'s using menu "'.$active_trail[1]['menu_name'].'".';
+        drupal_set_message($_message, 'warning');
+        // write to log
+        watchdog_exception($theme, new Exception($_message));
+        return FALSE;
+    }
+
+    // get the current menu link
+    $current_link = menu_link_get_preferred($current_path, 'main-menu');
+
+    $output = TRUE;
+    $output_menu = '';
+
+    $output_menu .= '<ul>';
+
+    // only display sidebar menu when there's a parent and it's not hidden
+    if ((isset($current_link['plid'])) && (!$current_link['hidden'])) {
+        // first level links
+        if (($current_depth == 2) && ($current_link['has_children'])) {
+            // show sub tree of current node            
+
+            $output_menu .= '<li class="page_item page_item_has_children current_page_item">';
+            $output_menu .= l($current_link['link_title'], $current_link['link_path']);
+
+            // parameters to build the tree
+            $parameters = array(
+                'active_trail' => array($current_link['plid']),
+                'only_active_trail' => FALSE,
+                'min_depth' => $current_link['depth']+1,
+                'max_depth' => $current_link['depth']+1,
+                'conditions' => array('plid' => $current_link['mlid']),
+              );  
+            // get the children
+            $children = menu_build_tree($current_link['menu_name'], $parameters);
+
+            $output_menu .= '<ul class="children">';
+            foreach ($children as $child) {
+                if (!$child['link']['hidden']) {
+                    $output_menu .= '<li class="page_item">';
+                    $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
+                    $output_menu .= '</li>';
+                }
+            }   
+            $output_menu .= '</ul>';
+            $output_menu .= '</li>';
+
+        }
+        // second level links and deeper
+        elseif (($current_depth > 2)) {
+            // show sub tree of parent and 
+            // display current node as current page item
+
+            // get active parent by moving one up the trail
+            $active_parent = ($active_trail[$active_trail_key - 1]); 
+            // create flag if parent points home
+            $active_parent_is_front = ($active_parent['link_path'] === '<front>') ? TRUE : FALSE;
+
+            // get the parent menu link
+            $parent_link = menu_link_get_preferred($active_parent['link_path'], 'main-menu');
+            // however, if active parent points home, create a new array 
+            // using front as path
+            if ($active_parent_is_front){
+               $parent_link = array(
+                   'link_title' => $active_parent['link_title'],
+                   'link_path' => '<front>',
+                   'plid' => $active_parent['plid'],
+                   'mlid' => $active_parent['mlid'],
+                   'menu_name' => $active_parent['menu_name'],
+                   'depth' => $active_parent['depth'],
+               ); 
+            }
+
+            $output_menu .= '<li class="page_item page_item_has_children current_page_ancestor current_page_parent">';
+            $output_menu .= l($parent_link['link_title'], $parent_link['link_path']);
+
+            // parameters to build the tree
+            $parameters = array(
+                'active_trail' => array($parent_link['plid']),
+                'only_active_trail' => FALSE,
+                'min_depth' => $parent_link['depth']+1,
+                'max_depth' => $parent_link['depth']+1,
+                'conditions' => array('plid' => $parent_link['mlid']),
+              );  
+            // get the children
+            $children = menu_build_tree($parent_link['menu_name'], $parameters);
+
+            $output_menu .= '<ul class="children">';
+            foreach ($children as $child) {  
+                if (!$child['link']['hidden']) {
+                    if ($current_path == $child['link']['link_path']) {
+                        $output_menu .= '<li class="page_item current_page_item">';
+                        $output_menu .= '<span>'.$child['link']['link_title'].'</span>';
+                        if ($child['link']['has_children']) {
+
+                            // get the grandchildren
+                            // parameters to build the tree
+                            $parameters = array(
+                                'active_trail' => array($child['link']['plid']),
+                                'only_active_trail' => FALSE,
+                                'min_depth' => $child['link']['depth']+1,
+                                'max_depth' => $child['link']['depth']+1,
+                                'conditions' => array('plid' => $child['link']['mlid']),
+                              );  
+                            $grandchildren = menu_build_tree($child['link']['menu_name'], $parameters);
+
+                            $output_menu .= '<ul class="children">';
+                            foreach ($grandchildren as $grandchild) {
+                                if (!$grandchild['link']['hidden']) {
+                                    $output_menu .= '<li class="page_item">';
+                                    $output_menu .= l($grandchild['link']['link_title'], $grandchild['link']['link_path']);
+                                    $output_menu .= '</li>';
+                                }
+                            }
+                            $output_menu .= '</ul>';
+                        }
+                    } else {
+                        $output_menu .= '<li class="page_item">';
+                        $output_menu .= l($child['link']['link_title'], $child['link']['link_path']);
+                    }
+                    $output_menu .= '</li>';
+                }
+            }
+            $output_menu .= '</ul>';
+            $output_menu .= '</li>';
+
+        } else {
+            // link has no children
+            $output = FALSE;
+        }        
+    } else {
+        $output = FALSE;
+    }
+
+    $output_menu .= '</ul>';
+
+    return ($output) ? $output_menu : $output;
+    
 }
 
 /**
