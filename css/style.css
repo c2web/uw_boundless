@@ -10264,4 +10264,17 @@ span.next-page a:after {
 .radio input {
   opacity: 1;
 }
+.form-text,
+.form-textarea,
+.form-select,
+.form-file {
+  border-radius: 0;
+  color: #595959;
+}
+.form-submit {
+  border-radius: 0;
+}
+.webform-component {
+  margin-bottom: 15px;
+}
 /*# sourceMappingURL=style.css.map */
