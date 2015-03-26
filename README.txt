@@ -21,6 +21,8 @@ The following documentation assumes:
 - the default content feed as the default front page 
 Some instructions may not apply exactly to existing Drupal 7 installations.
 
+Configuration
+---------------
 1. Download this theme and put it in the sites/all/themes/ folder of your site.
 
 2. Enable the theme
@@ -100,3 +102,59 @@ Contains color settings for elements on the front page.
 
 3. Sidebar menu
 Contains a setting to manage the visibility of the sidebar menu.
+
+
+Creating a sub-theme
+---------------
+The following instructions are based on the "Creating a sub-theme" page of the Drupal Theming guide (https://www.drupal.org/node/225125)
+
+1. Folder "subtheme"
+Create a new folder in the sites/[all|my_sitename]/themes/ location of your drupal installation. 
+This folder should have the same name as the internal name of the your sub-theme (e.g., subtheme).
+
+2. File "subtheme.info"
+Copy the uw_boundless.info file to you sub-theme folder and rename it to the name of your sub-theme (e.g. subtheme.info)
+Edit your subtheme.info file by changing the "name" and "description" values to your liking. 
+Don't change the "core" value. 
+Change the "base theme" value to uw_boundless.
+
+The first lines of your subtheme.info file should now look something like this:
+name = My theme name
+description = A UW Boundless sub-theme description
+core = 7.x
+base theme = uw_boundless
+
+2a. Regions inheritance
+Drupal sub-themes do not inherit regions, so keep the regions section as-is.
+
+2b. Style sheet inheritance
+You must declare at least one stylesheet in your sub-theme for any of the parent theme's stylesheets to be inherited.
+Keep the style sheet declaration as-is:
+stylesheets[all][] = css/style.css
+
+Copy the css folder (and its content) from the uw_boundless theme folder to your sub-theme folder.
+Your sub-theme's folder and file structure should now look something like this:
+subtheme/
+--subtheme.info
+--css/
+----assets/
+----style.css
+----style.css.map
+
+2c. JavaScript inheritance
+All scripts defined in the uw_boundless theme will be inherited.
+Disable or remove all scripts[] references from your subtheme.info file.
+
+2d. Theme settings inheritance
+All theme settings defined in the uw_boundless theme will be inherited.
+Disable or remove all settings[uw_boundless_...] references from your subtheme.info file.
+
+3. Enable your subtheme
+Navigate to Administration > Appearance and enable your sub-theme as the default theme.
+
+4. Configuration
+Step through the theme configuration instructions as described above (in particular 3.BootstrapCDN, 10.Breadcrumbs and 11.Region-wells) 
+to reset some settings.
+
+5. Customize
+You're now ready to further customize your subtheme.
