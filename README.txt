@@ -115,24 +115,24 @@ Creating a sub-theme
 ---------------
 The following instructions are based on the "Creating a sub-theme" page of the Drupal Theming guide (https://www.drupal.org/node/225125)
 
-1. Folder "subtheme"
+1. Folder "my_subtheme_name"
 Create a new folder in the sites/[all|my_sitename]/themes/ location of your drupal installation. 
-This folder should have the same name as the internal name of the your sub-theme (e.g., subtheme).
+This folder should have the same name as the internal name of the your sub-theme (e.g., my_subtheme_name).
 
-2. File "subtheme.info"
-Copy the uw_boundless.info file to you sub-theme folder and rename it to the name of your sub-theme (e.g. subtheme.info)
-Edit your subtheme.info file by changing the "name" and "description" values to your liking. 
+2. File "my_subtheme_name.info"
+Copy the uw_boundless.info file to you sub-theme folder and rename it to the name of your sub-theme (e.g. my_subtheme_name.info)
+Edit your my_subtheme_name.info file by changing the "name" and "description" values to your liking. 
 Don't change the "core" value. 
 Change the "base theme" value to uw_boundless.
 
-The first lines of your subtheme.info file should now look something like this:
+The first lines of your my_subtheme_name.info file should now look something like this:
 name = My theme name
 description = A UW Boundless sub-theme description
 core = 7.x
 base theme = uw_boundless
 
 2a. Regions inheritance
-Drupal sub-themes do not inherit regions, so keep the regions declarations as-is in your subtheme.info file.
+Drupal sub-themes do not inherit regions, so keep the regions declarations as-is in your my_subtheme_name.info file.
 
 2b. Style sheet inheritance
 You must declare at least one stylesheet in your sub-theme for any of the parent theme's stylesheets to be inherited.
@@ -141,8 +141,8 @@ stylesheets[all][] = css/style.css
 
 Copy the css folder (and its content) from the uw_boundless theme folder to your sub-theme folder.
 Your sub-theme's folder and file structure should now look something like this:
-subtheme/
---subtheme.info
+my_subtheme_name/
+--my_subtheme_name.info
 --css/
 ----assets/
 ----style.css
@@ -150,13 +150,13 @@ subtheme/
 
 2c. JavaScript inheritance
 All scripts defined in the uw_boundless theme will be inherited.
-Disable or remove all scripts[] declarations from your subtheme.info file.
+Disable or remove all scripts[] declarations from your my_subtheme_name.info file.
 
 2d. Theme settings inheritance
 All theme settings defined in the uw_boundless theme will be inherited.
-Disable or remove all settings[uw_boundless_...] declarations from your subtheme.info file.
+Disable or remove all settings[uw_boundless_...] declarations from your my_subtheme_name.info file.
 
-3. Enable your subtheme
+3. Enable your sub-theme
 Navigate to Administration > Appearance and enable your sub-theme as the default theme.
 
 4. Configuration
