@@ -161,7 +161,7 @@ Navigate to Administration > Appearance and enable your sub-theme as the default
 
 4. Configuration
 Step through the theme configuration instructions as described above (in particular 3.BootstrapCDN, 10.Breadcrumbs and 11.Region-wells) 
-to reset some settings.
+to reset some settings for your sub-theme.
 
 5. Customize
-You're now ready to further customize your subtheme.
+You're now ready to further customize your sub-theme.
