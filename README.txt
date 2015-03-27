@@ -125,7 +125,7 @@ core = 7.x
 base theme = uw_boundless
 
 2a. Regions inheritance
-Drupal sub-themes do not inherit regions, so keep the regions section as-is.
+Drupal sub-themes do not inherit regions, so keep the regions declarations as-is in your subtheme.info file.
 
 2b. Style sheet inheritance
 You must declare at least one stylesheet in your sub-theme for any of the parent theme's stylesheets to be inherited.
@@ -143,11 +143,11 @@ subtheme/
 
 2c. JavaScript inheritance
 All scripts defined in the uw_boundless theme will be inherited.
-Disable or remove all scripts[] references from your subtheme.info file.
+Disable or remove all scripts[] declarations from your subtheme.info file.
 
 2d. Theme settings inheritance
 All theme settings defined in the uw_boundless theme will be inherited.
-Disable or remove all settings[uw_boundless_...] references from your subtheme.info file.
+Disable or remove all settings[uw_boundless_...] declarations from your subtheme.info file.
 
 3. Enable your subtheme
 Navigate to Administration > Appearance and enable your sub-theme as the default theme.
