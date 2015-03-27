@@ -23,7 +23,8 @@ Some instructions may not apply exactly to existing Drupal 7 installations.
 
 Configuration
 ---------------
-1. Download this theme and put it in the sites/all/themes/ folder of your site.
+1. Download this theme and put the extracted folder in the sites/[all|my_sitename]/themes/ folder of your site.
+Make sure the folder name is "uw_boundless".
 
 2. Enable the theme
 Navigate to Administration > Appearance and make sure that the UW Boundless theme is the enabled and default theme.
