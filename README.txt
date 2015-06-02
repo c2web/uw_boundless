@@ -15,6 +15,7 @@ Drupal 7 theme implementation:              UW Creative Communications
 
 ADDITIONAL DEVELOPMENT INFO
 ---------------
+- Current UW branding guidelines are maintained at http://www.washington.edu/brand/section/web/
 - The UW Boundless theme uses local bootstrap source files as described in "Method 1" of the Bootstrap Theming Guide: https://www.drupal.org/node/1978010
 - The style sheet (css/style.css) is compiled using LESS CSS preprocessor.
 - Scripts are not compiled and merely declared in the uw_boundless.info file.
