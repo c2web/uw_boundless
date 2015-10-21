@@ -10525,7 +10525,7 @@ nav#mobile-relative .navbar-nav .dawgdrops-item .dawgdrops-item-menu-link {
 }
 @media only screen and (max-width: 768px) {
   nav#mobile-relative button.uw-mobile-menu-toggle {
-    margin-top: -65px;
+    margin-top: -55px;
     margin-right: 0;
   }
 }
