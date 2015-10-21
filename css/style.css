@@ -10444,6 +10444,9 @@ label.screen-reader {
   .uw-body .uw-site-title {
     padding-right: 75px;
   }
+  div.container.uw-body {
+    padding-top: 20px;
+  }
 }
 .front .uw-body .uw-site-title + p {
   display: none;
