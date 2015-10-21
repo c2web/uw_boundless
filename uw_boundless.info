@@ -72,10 +72,10 @@ scripts[] = 'js/script.js'
 ; ;; theme settings
 ; ;;;;;;;;;;;;;;;;;;;;;
 
-settings[uw_boundless_hero_image_front_default_path] = 'http://www.washington.edu/brand/files/2014/09/w.jpg'
+settings[uw_boundless_hero_image_front_default_path] = '//www.washington.edu/brand/files/2014/09/w.jpg'
 settings[uw_boundless_hero_image_front_default] = 1
 settings[uw_boundless_hero_image_front_path] = ''
-settings[uw_boundless_hero_image_default_path] = 'http://www.washington.edu/brand/files/2014/09/w3.jpg'
+settings[uw_boundless_hero_image_default_path] = '//www.washington.edu/brand/files/2014/09/w3.jpg'
 settings[uw_boundless_hero_image_default] = 1
 settings[uw_boundless_hero_image_path] = ''
 settings[uw_boundless_front_page_title_color] = '#ffffff'
