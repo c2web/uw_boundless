@@ -3,7 +3,7 @@
 .uw-hero-image,
 .no-uw-hero-image  {
 	height: 170px;
-	background: url('assets/temp/ima.jpg') center center;
+	// background: url('assets/temp/ima.jpg') center center;
 	.background-size(cover);
 	position: relative;
 	// z-index: -1;
@@ -13,8 +13,8 @@
 		height: 80px;
 		width: 100%;
 		content: "";
-		background: url('assets/images/stripes-dark-tile.png');
-		opacity: .3;
+		background: url('assets/images/stripes-dark-tile.svg');
+		opacity: .2;
 	}
 	&:before {
 		position:absolute;
@@ -25,6 +25,41 @@
 		content: "";
 		opacity: .4;
 		background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, .8))) 0 0 no-repeat;
+	}
+	// Page Attributes > Big Hero / Radio button
+	&.hero-height {
+  		height: 350px;
+  		#hero-container {
+  			padding-left: 0;
+			position: static;
+  			h1 {
+			  line-height: 1;
+			  padding: 80px 20% 0 0;
+			  margin: 0;
+		      text-shadow: 1px 1px 3px rgba(0,0,0,.5);
+			  &:after {
+			    content: "";
+			    display: block;
+			    position: absolute;
+			    top: 0;
+			    height: 360px;
+			    left: -140px;
+  				opacity: .3;
+  				width: 600px;
+			    background: url(assets/svg/slashes-light.svg) no-repeat 0 0;
+			    z-index: 0;
+			  }
+			}
+  		}
+  		&:after{
+  			display: none;
+  		}
+  		#hero-bg {
+  			padding: 0;
+		}
+		.udub-slant span {
+		  background-color: #E8E3D3;
+		}
 	}
 }
 .no-uw-hero-image {
@@ -38,6 +73,7 @@
 		display: none;
 	}
 }
+
 
 // Dub slant
 
@@ -87,6 +123,33 @@
 @media only screen and (max-width : 767px) {
 	.uw-hero-image {
 		display: none;
+
+		// Larger hero
+		&.hero-height {
+			padding: 50px 20px 20px;
+			display: block;
+		  	height: auto;
+		  	#hero-container {
+		  		h1 {
+		  			font-size: 35px;
+		  			padding: 0;
+		  			&:after {
+		  				background-size: 80%;
+		  				-moz-background-size: 80%;
+		  				-webkit-background-size: 80%;
+						top: -60px;
+						left: -270px;
+		  			}
+		  		}
+		  	}
+		}
+		&.hero-blank {
+			display: block;
+			.uw-site-title-blank {
+    			font-size: 30px;
+  			    margin: 5px 0 20px 5px;
+    		}
+		}
 	}
     .udub-slant {
         margin: 10px 0 15px 0;
@@ -94,5 +157,19 @@
             height: 8px;
             margin: 0 0 0 -145px;
         }
+    }
+    div.container.uw-body {
+    	padding-top: 0;
+    }
+    div.container.uw-body {
+	   	div.uw-site-title { 
+			margin-top: 0;
+	    }
+	}
+    button.uw-mobile-menu-toggle {
+    	bottom: 10px;
+    }
+    div.hero-content.col-md-12.uw-content {
+    	margin-top: 0;
     }
 }

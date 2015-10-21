@@ -30,8 +30,6 @@ jQuery(document).ready(function( $ ) {
               'width' : '100%'
             })
 
-          $preview.width('33%').html( $img )
-
           $inputs.filter('.wp-get-posts-imageID').val( media.id )
           $inputs.filter('.wp-get-posts-image').val( media.url )
 
@@ -41,7 +39,7 @@ jQuery(document).ready(function( $ ) {
   });
 
 /** Panels fix: preview of the image doesn't show otherwise **/
-   $('body').on('mouseenter', '.widget-dialog-uw_widget_single_image', function() {
+   $('body').on('mouseenter', '.widget-dialog-uw_widget_single_image, .widget-dialog-uw_widget_single_image_community_photo', function() {
 
     var $this = $(this)
       , $img  = $this.find('img')

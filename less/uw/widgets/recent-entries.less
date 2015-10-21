@@ -39,7 +39,7 @@
 		display: block;
 		height: 70px;
 		width: 70px;
-		margin: 5px 9% 15px 0px;
+		margin: 5px 25px 15px 0px;
 		float: left;
 	}
 	a.widget-thumbnail {
@@ -86,6 +86,15 @@ ul.shortcode-blogroll-mini {
 
 // Fixes UL padding of shortcode
 
-.uw-widget-rss { 
+.uw-content .uw-widget-rss { 
 	padding: 0;
+}
+
+// Necessary for sidebar, and hides blank span
+
+.uw-sidebar .uw-widget-rss.widget {
+    padding: 10px 0 0 40px;
+    & > span:nth-child(1) {
+    	display: none;
+	}
 }

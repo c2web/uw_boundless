@@ -1,4 +1,4 @@
-nav#mobile-relative {
+#mobile-relative {
     display: none;
     ul.uw-mobile-menu {
       display: none;
@@ -8,7 +8,7 @@ nav#mobile-relative {
       list-style:none;
       padding:0;
       margin:0 0 25px;
-      ul
+      > ul
       {
         display: block;
         list-style:none;
@@ -28,16 +28,15 @@ nav#mobile-relative {
 @media only screen and (max-width : 768px) {
 
   //Hides desktop version
-  nav#desktop-relative {
+  #desktop-relative {
     display: none;
   }
 
-  // Next for lines for the homepage only
   .uw-mobile-menu li {
     background-color: #eee;
     border-bottom: 1px solid #fff;
   }
-  nav#mobile-relative {
+  #mobile-relative {
     display: block;
     button.uw-mobile-menu-toggle
     {
@@ -71,6 +70,69 @@ nav#mobile-relative {
     }
     ul.uw-mobile-menu li.pagenav ul li.current_page_parent.current_page_ancestor > a:after {
       display: none;
+    }
+    &.frontpage {
+        margin-top: -18px;
+        position: relative;
+        button.uw-mobile-menu-toggle {
+            position: absolute;
+            right: -20px;
+            z-index: 10;
+            margin: 0;
+            top: -50px;
+        }
+        ul.uw-mobile-menu {
+            //position: absolute;
+            //right: 20px;
+            z-index: 1;
+            //margin-top: 62px;
+            //width: calc(~"100% - 40px");
+            .menu-dropdowns-container {
+                margin-top: 0px;
+            }
+        }
+        &.bighero {
+            margin-top: 0px;
+            background-color: white;
+            button.uw-mobile-menu-toggle {
+                right: 0px;
+                top: 12px;
+            }
+            ul.uw-mobile-menu {
+                margin: 0;
+            }
+            #spacer {
+                height: 58px;
+                margin-bottom: 2px;
+                width: 100%;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+    &:after { //clearfix
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+   }
+  }
+
+  // Next few lines for the homepage only
+ .home
+   #mobile-relative {
+    li{
+      a:hover,
+      a:focus {
+        border-bottom: 1px solid #eee;
+      }
+      &:last-child {
+        a:hover,
+        a:focus {
+          border-bottom: none;
+        }
+      }
     }
   }
 

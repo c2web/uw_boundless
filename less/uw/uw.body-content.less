@@ -4,6 +4,9 @@ ul {
 	padding-left: 25px;
 	//list-style-position: inside;
 }
+dd {
+	margin-bottom: 24.5px;
+}
 
 // Basic styles 
 
@@ -15,6 +18,15 @@ hr {
 iframe {
 	margin: 40px 0 20px;
 }
+
+
+// This overrides the line-height issue with bootrap
+small,
+.small {
+	font-size: 15px;
+	line-height: 1.5;
+}
+
 
 .intro {
 	font-family: @font-family-headline;
@@ -87,6 +99,22 @@ a.more {
 			font-weight: 700;
 		}
 	}
+	div.uw-site-title {
+		margin-top: 29px;
+		margin-bottom: 14.5px;
+	}
+  p.date {
+    margin-top: 25px;
+    margin-bottom: -19px;
+    // &:first-of-type{
+    //     margin-top: 0px;
+    // }
+  }
+  .author-info {
+    margin: -4.5px 0 20px 0;
+    font-weight: 800;
+  }
+  
 }
 
 // Next link in the blog
@@ -162,7 +190,7 @@ span.next-page {
 	.box-shadow(0px 1px 2px rgba(0, 0, 0, 0.2));
 	border-top: 6px solid @lightgold;
 	position: relative;
-	background: url('assets/images/stripes-dark-tile.png') repeat-x 0 -96px transparent;
+	background: url('assets/images/stripes-dark-tile.svg') repeat-x 0 -88px transparent;
 	img {
 		max-width: 100%;
 		height: auto;
@@ -179,33 +207,45 @@ span.next-page {
 		margin-top: 0;
 	}
 }
+.uw-body-copy ul.links {
+	overflow: visible;
+}
+
 .links {
 	padding: 0;
 	margin-top: 20px;
+	overflow: visible;
 	a {
-		position: relative;
-		&:after {
-			background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
-			content: "";
-			opacity: .4;
-			position: absolute;
-			right: -23px;
-			bottom: 1px;
-			width: 14px;
-			height: 21px;
-			.rotate(90deg);
-		}
+//		position: relative;
+//		&:after {
+//			background: url(/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg) no-repeat -206px -492px;
+//			content: "";
+//			opacity: .4;
+//			position: absolute;
+//			right: -23px;
+//			bottom: 1px;
+//			width: 14px;
+//			height: 21px;
+//			.rotate(90deg);
+//		}
 	}
 	li {
 		padding: 0;
 		list-style: none;
-		margin-bottom: 7px;
-		padding-bottom: 7px;
+		margin-bottom: 6px;
+		padding-bottom: 6px;
 		border-bottom: 1px solid #EEE;
 		&:last-child {
 			border-bottom: none;
 		}
 	}
+}
+
+img.attachment-post-thumbnail.wp-post-image {
+	float: left;
+    margin: 5px 50px 0 0;
+    height: 150px;
+    width: auto;
 }
 
 
@@ -227,7 +267,17 @@ span.next-page {
 			margin: 10px 80px 20px 0;
 			font-size: 33px;
 		}
+        p.date {
+            margin-bottom: -15px;
+        }
 	}
+    .home {
+        .uw-body {
+            .uw-site-title{
+                padding-right: 65px;
+             }
+        }
+    }
 }
 
 @media only screen and (min-width : 768px) {
