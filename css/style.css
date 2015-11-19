@@ -10507,7 +10507,7 @@ nav#mobile-relative .navbar-nav .dawgdrops-item a:after {
   background: none;
 }
 nav#mobile-relative .navbar-nav .dawgdrops-item .dawgdrops-item-menu-link {
-  display: inline-block;
+  display: block;
   float: right;
   z-index: 1;
   font-family: "Encode Sans Compressed", sans-serif;
@@ -10515,6 +10515,16 @@ nav#mobile-relative .navbar-nav .dawgdrops-item .dawgdrops-item-menu-link {
   cursor: pointer;
   text-transform: uppercase;
   background: url(assets/svg/caret.svg) no-repeat 33px 35px;
+}
+nav#mobile-relative .navbar-nav .dawgdrops-item .dawgdrops-item-menu-link:before {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  right: 50px;
+  top: 12px;
+  width: 20px;
+  height: 30px;
+  background: url(assets/svg/uw-sprite.svg) no-repeat -600px 0 transparent;
 }
 .front nav#mobile-relative {
   margin-right: -15px;
